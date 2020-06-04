@@ -17,18 +17,20 @@ def write_list():
     number_receive= request.form['number_give']
     address_receive= request.form['address_give']
     phonenumber_receive= request.form['phonenumber_give']
-    order_list={
-        name_receive= request.form['name_give']
-        number_receive= request.form['number_give']
-        address_receive= request.form['address_give']
-        phonenumber_receive= request.form['phonenumber_give']
+    doc={
+        'name':name_receive,
+        'number':number_receive,
+        'address':address_receive,
+        'phonenumber':phonenumber_receive,
     }
-    return jsonify({'result':'success', 'msg': '주문 등록'})
+    db.orderList.insert_one(doc)
+    return jsonify({'result':'success', 'msg': '주문이 완료되었습니다.'})
 
 
 @app.route('/list', methods=['GET'])
 def read_list():
-    return jsonify({'result':'success', 'msg': '이 요청은 GET!'})
+    lists=list(db.orderList.find({},{'_id':0}))
+    return jsonify({'result':'success', 'all_list': lists})#html에 보내는 부분인가?
 
 
 if __name__ == '__main__':

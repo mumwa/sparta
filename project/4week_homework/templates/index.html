@@ -39,20 +39,19 @@
                 alert('번호를 입력해주세요.');
                 $('#input4').focus();
                 return;
-            } else {
-                alert('주문이 완료되었습니다.');
-                $.ajax({
-                    type: 'POST', // 타입을 작성합니다.
-                    url: '/list', // url을 작성합니다.
-                    data: {}, // data를 작성합니다. },
-                    success: function (response) {
-                        if (response['result'] == 'success') {
-                            alert(response['msg']);
-                            window.location.reload();
-                        }
-                    }
-                });
             }
+            $.ajax({
+                type: 'POST', // 타입을 작성합니다.
+                url: '/list', // url을 작성합니다.
+                data: {name_give:name, number_give:number, address_give:address, phonenumber_give:phoneNumber,}, // data를 작성합니다. },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        alert(response['msg']);
+                        window.location.reload();
+                        console.log(response('all_list'))
+                    }
+                }
+            });
         }
         $(document).ready(function () {
             $('#orders-box').html('');
@@ -65,7 +64,7 @@
             // 3. POST /reviews 에 저장을 요청합니다.
 
         }
-
+//GET POST 따로따로 연결
         function listing() {
             // 1. 리뷰 목록을 서버에 요청하기
             // 2. 요청 성공 여부 확인하기
@@ -76,7 +75,24 @@
                 data: {},
                 success: function (response) {
                     if (response['result'] == 'success') {
-                        alert(response['msg']);
+                        let lists = response['all_list'];
+                        for(let i=0; i<lists.length; i++){
+                            let name=lists[i]['name']
+                            let number=lists[i]['number']
+                            let address=lists[i]['address']
+                            let phonenumber=lists[i]['phonenumber']
+                            console.log(name, number, address, phonenumber)
+                            let temp_html=`
+                            <tr>
+                                <th>${i+1}</th>
+                                <td>${name}</td>
+                                <td>${number}</td>
+                                <td>${address}</td>
+                                <td>${phonenumber}</td>
+                            </tr>
+                            `
+                            $('#tablebody').append(temp_html)
+                        }
                         // 2. 성공했을 때 리뷰를 올바르게 화면에 나타내기
                     } else {
                         alert('리뷰를 받아오지 못했습니다');
@@ -133,7 +149,23 @@
                 </div>
             </div>
         </div>
+        <div class='table_wrapper'>
+            <table class='table' class='table-striped'>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>이름</th>
+                    <th>수량</th>
+                    <th>주소</th>
+                    <th>전화번호</th>
+                  </tr>
+                </thead>
+                <tbody id='tablebody'>
+                </tbody>
+              </table>
+        </div>
     </div>
+    
 </body>
 
 </html>
