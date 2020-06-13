@@ -3,112 +3,25 @@ html{
     overflow: auto;
     text-align: center;
 }
-.box{
-    width: 100%;
-    display: flex;
-}
-/* 네비 */
-.navi{
-    height: 120px;
-    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
-    font-weight: bolder;
-    background-color: #ffffff;
-    text-align: center;
-    margin: auto;
-}
-.navi_content{
-    margin-left: 40%;
-    font-size: 30px;
-    display: flex;
-    text-align: center;
-}
-/* 네비 */
-.title_wrapper{
-    display: flex;
-    margin-left: 20%;
-    padding: 2%;
-}
-.title{
-    margin-top: 1%;
-    height: 45px;
-    font-family: NanumGothic;
-    font-size: 50px;
-    font-weight: 800;
-    letter-spacing: normal;
-    text-align: left;
-    color: #191919;
-}
-.cancel_button{
-    width: 82px;
-    height: 56px;
-    border-radius: 28px;
-    border: none;
-    background-color: #efefef;
-    font-family: NanumGothic;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-align: center;
-    color: #404040;
-    margin: 1% 1% 1% 30%;
-}
-#submit_button{
-    width: 82px;
-    height: 56px;
-    border-radius: 28px;
-    border: none;
-    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
-    background-color: #6b50db;
-    font-family: NanumGothic;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-align: center;
-    color:white;
-    margin: 1%;
-}
-.registration{
-    margin-left: 20%;
-}
-table{
-    font-family: NanumGothic;
-    font-size: 16px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.19;
-    letter-spacing: normal;
-    text-align: left;
-    color: #404040;
-}
-.table_head{
-    padding: 10px 10px 10px 40px;
-}
-.table_input{
-    height: 90px;
-}
-.short_input{
-    padding: 0 0 0 28px;
-    width: 401px;
-    height: 60px;
-    border-radius: 23px;
-    border: solid 3px #dddddd;
-    font-size : 18px;
-    margin: 0 32px;
-    font-family: 'Nanum Gothic', sans-serif;
 
+.navi{
+    /* padding: 45px; */
+    width: 100%;
+    height: 16%;
+    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
+    /* 언젠가 밑에만 생기게 바꾸고 만다 */
+    background-color: #ffffff;
+    display: flex;
+    font-weight: bolder;
+    margin-bottom: 15px;
+    /* 아래 15px 마진 줘서 30px 여백 줬는데 맨 위도 30px 떨어지게 하고 싶어서 여기에 15px 줌 */
 }
-.long_input{
-    padding: 0 0 0 28px;
-    width: 902px;
-    height: 60px;
-    border-radius: 23px;
-    border: solid 3px #dddddd;
-    font-size : 18px;
-    margin: 0 32px;
-    font-family: 'Nanum Gothic', sans-serif;
+.box_wrapper{
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
 }
-/*.search_button{
+.search_button{
     width: 30px;
     height: 30px;
     padding: 10px;
@@ -136,9 +49,9 @@ input{
 }
 .search_bar{
     width: 1920px;
-    font-weight: bolder;  */
+    font-weight: bolder;
     /* position: relative; */
-    /* margin: 0 135px;
+    margin: 0 135px;
 }
 .search_box{
     margin: 15px;
@@ -167,9 +80,9 @@ input{
 }
 .incontent{
     padding:auto;
-    margin-top: -18px; */
+    margin-top: -18px;
     /* 위에 absolute 걸고 padding 18px 넣으면 name이랑 incontent랑 떨어져서 -18px함 왜 그런지는 모르겠음 */
-/* }
+}
 .content>img{
     margin:auto 0 auto 0;
 }
@@ -204,4 +117,4 @@ td{
 .wish_button>div{
     padding-top:31px;
 
-} */
+}

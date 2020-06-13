@@ -1,6 +1,7 @@
 html{
     font-family: 'Nanum Gothic', sans-serif;
     overflow: auto;
+    text-align: center;
 }
 
 .navi{

@@ -5,19 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>검색창</title>
-    <link rel="stylesheet" type="text/css"
-        href="/Users/chyo0903/Desktop/desktop-tutorial/sparta/surprise/static/search_style.css">
+    <link rel="stylesheet" type="text/css" href="static/search_style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
-
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script> -->
+    <script>
+        window.onload = listing();
+        function listing() {
+            // 1. 리뷰 목록을 서버에 요청하기
+            // 2. 요청 성공 여부 확인하기
+            // 3. 요청 성공했을 때 리뷰를 올바르게 화면에 나타내기
+            $.ajax({
+                type: "GET",
+                url: "/profilelist",
+                data: {},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        alert('리뷰를 받아왔습니다.');
+                        // 2. 성공했을 때 리뷰를 올바르게 화면에 나타내기
+                    } else {
+                        alert('리뷰를 받아오지 못했습니다');
+                    }
+                }
+            })
+        }
+    </script>
+
 </head>
 
 <body>
@@ -25,7 +45,8 @@
         <div class="box_wrapper">
             <div class="input_box">
                 <div>
-                    <a href=""><img style="max-width:50px; margin: 35px 10px 35px auto;" src='https://ifh.cc/g/LskOlA.png'></a>
+                    <a href=""><img style="max-width:50px; margin: 35px 10px 35px auto;"
+                            src='https://ifh.cc/g/LskOlA.png'></a>
                 </div>
                 <div class="one_search"><label>이름으로 검색</label><input placeholder="성을 포함한 이름을 적어주세요"><button
                         class="search_button"></button></div>
@@ -178,10 +199,10 @@
             </div>
         </div>
     </div>
-    <button class="wish_button">
+    <a class="wish_button" href="registration" style="text-decoration:none">
         <img src='https://ifh.cc/g/2mnGVL.png' style="margin:30px;">
         <div>내 위시리스트 등록하기</div>
-    </but>
+    </a>
 </body>
 
 </html>
