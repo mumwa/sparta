@@ -18,6 +18,7 @@
         crossorigin="anonymous"></script> -->
     <script>
         window.onload = listing();
+
         function listing() {
             // 1. 리뷰 목록을 서버에 요청하기
             // 2. 요청 성공 여부 확인하기
@@ -28,13 +29,38 @@
                 data: {},
                 success: function (response) {
                     if (response['result'] == 'success') {
-                        alert('리뷰를 받아왔습니다.');
-                        // 2. 성공했을 때 리뷰를 올바르게 화면에 나타내기
+                        let profiles = response['profiles'];
+                        for (let i = 0; i < profiles.length; i++) {
+                            make_card(profiles[i]['name'], profiles[i]['birthday'], profiles[i]['phonenumber']);
+                        }
                     } else {
-                        alert('리뷰를 받아오지 못했습니다');
+                        alert('프로필을 불러오지 못했습니다');
                     }
                 }
             })
+        }
+        function make_card(name, birthday, phonenumber) {
+            let temp_html = `<div class="search_box">
+                <div class="name">
+                    <p class="name_text">${name}</p>
+                </div>
+                <div class="content">
+                    <div class="incontent">
+                        <img src='https://ifh.cc/g/iXC2K4.png' style="margin:20px;">
+                        <table class="search_table">
+                            <tr>
+                                <td>생일:</td>
+                                <td class="gray">${birthday}</td>
+                            </tr>
+                            <tr>
+                                <td>전화번호:</td>
+                                <td class="gray">${phonenumber}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>`;
+            $('#box').append(temp_html);
         }
     </script>
 
@@ -56,147 +82,7 @@
         </div>
     </div>
     <div class="search_bar">
-        <div class="box_wrapper">
-            <div class="search_box">
-                <div class="name">
-                    <p class="name_text">박효정</p>
-                </div>
-                <div class="content">
-                    <div class="incontent">
-                        <img src='https://ifh.cc/g/iXC2K4.png' style="margin:20px;">
-                        <table class="search_table">
-                            <tr>
-                                <td>생일:</td>
-                                <td class="gray">9월 3일</td>
-                            </tr>
-                            <tr>
-                                <td>전화번호:</td>
-                                <td class="gray">010-9893-3417</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="search_box">
-                <div class="name">
-                    <p class="name_text">박효정</p>
-                </div>
-                <div class="content">
-                    <div class="incontent">
-                        <img src='https://ifh.cc/g/iXC2K4.png' style="margin:20px;">
-                        <table class="search_table">
-                            <tr>
-                                <td>생일:</td>
-                                <td class="gray">9월 3일</td>
-                            </tr>
-                            <tr>
-                                <td>전화번호:</td>
-                                <td class="gray">010-9893-3417</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="search_box">
-                <div class="name">
-                    <p class="name_text">박효정</p>
-                </div>
-                <div class="content">
-                    <div class="incontent">
-                        <img src='https://ifh.cc/g/iXC2K4.png' style="margin:20px;">
-                        <table class="search_table">
-                            <tr>
-                                <td>생일:</td>
-                                <td class="gray">9월 3일</td>
-                            </tr>
-                            <tr>
-                                <td>전화번호:</td>
-                                <td class="gray">010-9893-3417</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="search_box">
-                <div class="name">
-                    <p class="name_text">박효정</p>
-                </div>
-                <div class="content">
-                    <div class="incontent">
-                        <img src='https://ifh.cc/g/iXC2K4.png' style="margin:20px;">
-                        <table class="search_table">
-                            <tr>
-                                <td>생일:</td>
-                                <td class="gray">9월 3일</td>
-                            </tr>
-                            <tr>
-                                <td>전화번호:</td>
-                                <td class="gray">010-9893-3417</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="search_box">
-                <div class="name">
-                    <p class="name_text">박효정</p>
-                </div>
-                <div class="content">
-                    <div class="incontent">
-                        <img src='https://ifh.cc/g/iXC2K4.png' style="margin:20px;">
-                        <table class="search_table">
-                            <tr>
-                                <td>생일:</td>
-                                <td class="gray">9월 3일</td>
-                            </tr>
-                            <tr>
-                                <td>전화번호:</td>
-                                <td class="gray">010-9893-3417</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="search_box">
-                <div class="name">
-                    <p class="name_text">박효정</p>
-                </div>
-                <div class="content">
-                    <div class="incontent">
-                        <img src='https://ifh.cc/g/iXC2K4.png' style="margin:20px;">
-                        <table class="search_table">
-                            <tr>
-                                <td>생일:</td>
-                                <td class="gray">9월 3일</td>
-                            </tr>
-                            <tr>
-                                <td>전화번호:</td>
-                                <td class="gray">010-9893-3417</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="search_box">
-                <div class="name">
-                    <p class="name_text">박효정</p>
-                </div>
-                <div class="content">
-                    <div class="incontent">
-                        <img src='https://ifh.cc/g/iXC2K4.png' style="margin:20px;">
-                        <table class="search_table">
-                            <tr>
-                                <td>생일:</td>
-                                <td class="gray">9월 3일</td>
-                            </tr>
-                            <tr>
-                                <td>전화번호:</td>
-                                <td class="gray">010-9893-3417</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <div class="box_wrapper" id="box">
         </div>
     </div>
     <a class="wish_button" href="registration" style="text-decoration:none">

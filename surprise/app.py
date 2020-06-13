@@ -11,8 +11,9 @@ def home():
 
 @app.route('/profilelist', methods=['GET'])
 def read_profile():
+    
     profiles = list(db.profiles.find({},{'_id':0}))
-    return jsonify({'result': 'success'})
+    return jsonify({'result': 'success', 'profiles': profiles})
 
 @app.route('/registration')
 def registration_page():
