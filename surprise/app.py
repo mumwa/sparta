@@ -1,9 +1,11 @@
 from flask import Flask, render_template, jsonify, request
+from bson.objectid import ObjectId
 app = Flask(__name__)
 
-from pymongo import MongoClient           # pymongo를 임포트 하기(패키지 인스톨 먼저 해야겠죠?)
-client = MongoClient('localhost', 27017)  # mongoDB는 27017 포트로 돌아갑니다.
-db = client.dbsurprise                    # 'dbsparta'라는 이름의 db를 만듭니다.
+from pymongo import MongoClient           
+# client = MongoClient('localhost',27017) 
+client = MongoClient('localhost',27017) 
+db = client.dbsurprise                   
 
 @app.route('/')
 def home():
@@ -11,8 +13,14 @@ def home():
 
 @app.route('/profilelist', methods=['GET'])
 def read_profile():
+    profiles = list(db.profiles.find({}))
+    for profile in profiles:
+        profile['_id'] = profile['_id'].__str__()
     
-    profiles = list(db.profiles.find({},{'_id':0}))
+    # print(profiles[0])
+    # ObjectId(string_id_from_front)
+    # print(db.profiles.find_one({"_id": ObjectId(profiles[0]['_id'])}))
+    # 아이디 가져다쓰는...그런거...
     return jsonify({'result': 'success', 'profiles': profiles})
 
 @app.route('/registration')
@@ -21,7 +29,7 @@ def registration_page():
 
 @app.route('/registration', methods=['POST'])
 def new_profile():
-    # title_receive로 클라이언트가 준 title 가져오기
+    
     print(request.form)
     name_receive = request.form['name_give']
     phonenumber_receive = request.form['phonenumber_give']
@@ -31,7 +39,7 @@ def new_profile():
     address_receive = request.form['address_give']
     password_receive = request.form['password_give']
 
-    # DB에 삽입할 review 만들기
+    
     profile = {
         'name': name_receive,
         'phonenumber': phonenumber_receive,
@@ -41,9 +49,55 @@ def new_profile():
         'address': address_receive,
         'password': password_receive,
     }
-    # reviews에 review 저장하기
+    
     db.profiles.insert_one(profile)
-    # 성공 여부 & 성공 메시지 반환
+    
     return jsonify({'result': 'success', 'msg': '프로필이 등록되었습니다.'})
+
+@app.route('/giftsubmit')
+def gift_submit_page():
+    return render_template('gift_submit.html')
+
+@app.route('/giftsubmit', methods=['POST'])
+def new_gift():
+    print(request.form)
+    product_name_receive = request.form['product_name_give']
+    price_receive = request.form['price_give']
+    image_receive = request.form['image_give']
+    link_receive = request.form['link_give']
+    story_receive = request.form['story_give']
+    user_id_receive = request.form['user_id']
+    
+    gift = {
+        'product_name': product_name_receive,
+        'price': price_receive,
+        'image': image_receive,
+        'link': link_receive,
+        'story': story_receive,
+        'user_id': user_id_receive,
+    }
+    
+    db.gifts.insert_one(gift)
+    return jsonify({'result': 'success', 'msg': '선물이 등록되었습니다.'})
+
+@app.route('/giftprofile')
+def gift_page():
+    return render_template('gift.html')
+
+@app.route('/yourgiftlist', methods=['GET'])
+def read_owner():
+    user_receive = request.args.get('user_give')
+    owners = list(db.profiles.find({'_id':ObjectId(user_receive)}, {'_id': False, 'password': False}))
+    # print(profiles[0])
+    # ObjectId(string_id_from_front)
+    # print(db.profiles.find_one({"_id": ObjectId(profiles[0]['_id'])}))
+    # 아이디 가져다쓰는...그런거...
+    return jsonify({'result': 'success', 'owners': owners})
+
+# @app.route('/giftlist', methods=['GET'])
+# def read_profile():
+#     profiles = list(db.profiles.find({},{'_id':0}))
+#     return jsonify({'result': 'success', 'profiles': profiles})
+
 if __name__ == '__main__':  
     app.run('0.0.0.0',port=5000,debug=True)

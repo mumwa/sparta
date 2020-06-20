@@ -64,6 +64,14 @@ input{
     background-color: #6b50db;
     border-radius: 17px 17px 0 0;
 }
+.name:hover{
+    width: 291px;
+    height: 58px;
+    font-size: 20px;
+    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
+    background-color: #ff60dd;
+    border-radius: 17px 17px 0 0;
+}
 .name_text{
     color:white;
     position: absolute;

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>등록창</title>
-    <link rel="stylesheet" type="text/css" href="static/registration_style.css">
+    <link rel="stylesheet" type="text/css"
+        href="static/registration_style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
@@ -71,11 +72,11 @@
             $.ajax({
                 type: "POST",
                 url: "/registration",
-                data: { name_give: name, phonenumber_give: phonenumber, birthday_give:birthday, bank_give: bank, account_give: account, address_give: address, password_give: password },
+                data: { name_give: name, phonenumber_give: phonenumber, birthday_give: birthday, bank_give: bank, account_give: account, address_give: address, password_give: password },
                 success: function (response) {
                     if (response['result'] == 'success') {
                         alert(response['msg']);
-                        window.location.href = 'http://0.0.0.0:5000/';
+                        window.location.href = '/';
                         // 나중에 선물창으로 넘겨줘
                     }
                 }
@@ -87,72 +88,74 @@
 </head>
 
 <body>
-    <div class="navi" class="box">
-        <div class="navi_content">
-            <a href=""><img style="max-width:50px; margin: 35px 15px 35px auto;" src='https://ifh.cc/g/LskOlA.png'></a>
-            <div style="margin: 40px auto 40px 15px;">위시리스트 등록하기</div>
+    <div id="wrapper">
+        <div class="navi" class="box">
+            <div class="navi_content" onclick="window.location.href = '/'">
+                <img style="max-width:50px; margin: 35px 15px 35px auto;"
+                        src='https://ifh.cc/g/LskOlA.png'></a>
+                <div style="margin: 40px auto 40px 15px;">위시리스트 등록하기</div>
+            </div>
         </div>
-    </div>
-    <div class="title_wrapper">
-        <div class="title">
-            프로필 등록하기
+        <div class="head">
+            <div class="title_wrapper">
+                <div class="title">
+                    <img style="width:34px; height:43px; margin: 5px 20px 0 0;" src='https://ifh.cc/g/cNkpIs.png'>
+                    <div>프로필 등록하기</div>
+                </div>
+                <div class="explain">
+                    프로필을 등록하면 사용자들이 검색을 통해 찾을 수 있고,
+                    <br>선물 등록이 가능합니다.
+                    <br>이름, 전화번호, 생일만 공개됩니다.
+                </div>
+            </div>
+            <button class="cancel_button">취소</button>
+            <button id="submit_button" onclick="make_profile()">완료</button>
         </div>
-        <!-- <div>
-            프로필을 등록하면 사용자들이 검색을 통해 찾을 수 있고,
-            <br>선물 등록이 가능합니다.
-            <br>이름, 전화번호, 생일만 공개됩니다.
-        </div> -->
+        <div class="registration">
+            <div class="registration_content">
+                <table>
+                    <tr>
+                        <td class="table_head">이름</td>
+                        <td class="table_head">번호</td>
+                    </tr>
+                    <tr class="table_input">
+                        <td><input class="short_input" id="name"></td>
+                        <td><input class="short_input" id="phonenumber"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="table_head">생일</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="long_input" id="birthday"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="table_head">주소지</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="long_input" id="address"></td>
+                    </tr>
 
-        <button class="cancel_button">취소</button>
-        <button id="submit_button" onclick="make_profile()">완료</button>
-    </div>
-    <div class="registration">
-        <div class="registration_content">
-            <table>
-                <tr>
-                    <td class="table_head">이름</td>
-                    <td class="table_head">번호</td>
-                </tr>
-                <tr class="table_input">
-                    <td><input class="short_input" id="name"></td>
-                    <td><input class="short_input" id="phonenumber"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="table_head">생일</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input class="long_input" id="birthday"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="table_head">주소지</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input class="long_input" id="address"></td>
-                </tr>
+                    <tr>
+                        <td colspan="2" class="table_head">계좌번호</td>
+                    </tr>
+                    <tr class="table_input">
+                        <td><input class="short_input" id="bank"></td>
+                        <td><input class="short_input" id="account"></td>
+                    </tr>
 
-                <tr>
-                    <td colspan="2" class="table_head">계좌번호</td>
-                </tr>
-                <tr class="table_input">
-                    <td><input class="short_input" id="bank"></td>
-                    <td><input class="short_input" id="account"></td>
-                </tr>
-
-                <tr>
-                    <td class="table_head">프로필 수정 비밀번호</td>
-                    <td class="table_head">비밀번호 확인</td>
-                </tr>
-                <tr>
-                    <td><input class="short_input" id="password"></td>
-                    <td><input class="short_input" id="password_again"></td>
-                </tr>
-
-
-            </table>
+                    <tr>
+                        <td class="table_head">프로필 수정 비밀번호</td>
+                        <td class="table_head">비밀번호 확인</td>
+                    </tr>
+                    <tr>
+                        <td><input class="short_input" id="password"></td>
+                        <td><input class="short_input" id="password_again"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-    </div>
-
-    <!-- <div class="navi">
+        <div class="foot"></div>
+        <!-- <div class="navi">
         <div class="box_wrapper">
             <div class="input_box">
                 <div style="margin: 35px 10px 35px auto;">
@@ -162,12 +165,13 @@
             </div>
         </div>
     </div> -->
-    <div class="search_bar">
-        <div class="box_wrapper">
+        <!-- <div class="search_bar">
+            <div class="box_wrapper">
 
+            </div>
         </div>
-    </div>
-    <img style="min-width:50px; max-width: 70px;" scr='https://ifh.cc/g/51HFMJ.png'>
+        <img style="min-width:50px; max-width: 70px;" scr='https://ifh.cc/g/51HFMJ.png'>
+    </div> -->
 </body>
 
 </html>

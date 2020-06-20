@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>등록창</title>
+    <link rel="stylesheet" type="text/css"
+        href="static/registration_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script> -->
+    <script type="text/javascript">
+        function make_profile() {
+            // 1. 제목, 저자, 리뷰 내용을 가져옵니다.
+            let name = $('#name').val();
+            let phonenumber = $('#phonenumber').val();
+            let bank = $('#bank').val();
+            let account = $('#account').val();
+            let address = $('#address').val();
+            let password = $('#password').val();
+            let password_again = $('#password_again').val();
+            let birthday = $('#birthday').val();
+
+            // 2. 제목, 저자, 리뷰 중 하나라도 입력하지 않았을 경우 alert를 띄웁니다.
+            if (name == '') {
+                alert('이름을 입력해주세요');
+                $('#name').focus();
+                return;
+            } else if (phonenumber == '') {
+                alert('번호를 입력해주세요');
+                $('#phonenumber').focus();
+                return;
+            } else if (birthday == '') {
+                alert('생일을 입력해주세요');
+                $('#birthday').focus();
+                return;
+            } else if (bank == '') {
+                alert('은행을 입력해주세요');
+                $('#bank').focus();
+                return;
+            } else if (account == '') {
+                alert('계좌을 입력해주세요');
+                $('#account').focus();
+                return;
+            } else if (address == '') {
+                alert('주소를 입력해주세요');
+                $('#address').focus();
+                return;
+            } else if (password == '') {
+                alert('비밀번호를 입력해주세요');
+                $('#password').focus();
+                return;
+            } else if (password_again == '') {
+                alert('비밀번호 재입력해주세요');
+                $('#password_again').focus();
+                return;
+            } else if (password_again != password) {
+                alert('비밀번호와 재입력한 번호가 일치하지 않습니다.');
+                $('#password_again').focus();
+                return;
+            }
+
+            // 3. POST /reviews 에 저장을 요청합니다.
+            $.ajax({
+                type: "POST",
+                url: "/registration",
+                data: { name_give: name, phonenumber_give: phonenumber, birthday_give: birthday, bank_give: bank, account_give: account, address_give: address, password_give: password },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        alert(response['msg']);
+                        window.location.href = 'http://0.0.0.0:5000/';
+                        // 나중에 선물창으로 넘겨줘
+                    }
+                }
+            })
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="navi" class="box">
+            <div class="navi_content">
+                <img style="max-width:50px; margin: 35px 15px 35px auto;"
+                        src='https://ifh.cc/g/LskOlA.png'></a>
+                <div style="margin: 40px auto 40px 15px;">위시리스트 등록하기</div>
+            </div>
+        </div>
+        <div class="head">
+            <div class="title_wrapper">
+                <div class="title">
+                    <img style="width:34px; height:43px; margin: 5px 20px 0 0;" src='https://ifh.cc/g/cNkpIs.png'>
+                    <div>프로필 등록하기</div>
+                </div>
+                <div class="explain">
+                    프로필을 등록하면 사용자들이 검색을 통해 찾을 수 있고,
+                    <br>선물 등록이 가능합니다.
+                    <br>이름, 전화번호, 생일만 공개됩니다.
+                </div>
+            </div>
+            <button class="cancel_button">취소</button>
+            <button id="submit_button" onclick="make_profile()">완료</button>
+        </div>
+        <div class="registration">
+            <div class="registration_content">
+                <table>
+                    <tr>
+                        <td class="table_head">이름</td>
+                        <td class="table_head">번호</td>
+                    </tr>
+                    <tr class="table_input">
+                        <td><input class="short_input" id="name"></td>
+                        <td><input class="short_input" id="phonenumber"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="table_head">생일</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="long_input" id="birthday"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="table_head">주소지</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="long_input" id="address"></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="table_head">계좌번호</td>
+                    </tr>
+                    <tr class="table_input">
+                        <td><input class="short_input" id="bank"></td>
+                        <td><input class="short_input" id="account"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="table_head">프로필 수정 비밀번호</td>
+                        <td class="table_head">비밀번호 확인</td>
+                    </tr>
+                    <tr>
+                        <td><input class="short_input" id="password"></td>
+                        <td><input class="short_input" id="password_again"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="foot"></div>
+        <!-- <div class="navi">
+        <div class="box_wrapper">
+            <div class="input_box">
+                <div style="margin: 35px 10px 35px auto;">
+                    <a href=""><img style="max-width:50px;" src='https://ifh.cc/g/LskOlA.png'></a>
+                    위시리스트 등록하기
+                </div>
+            </div>
+        </div>
+    </div> -->
+        <!-- <div class="search_bar">
+            <div class="box_wrapper">
+
+            </div>
+        </div>
+        <img style="min-width:50px; max-width: 70px;" scr='https://ifh.cc/g/51HFMJ.png'>
+    </div> -->
+</body>
+
+</html>

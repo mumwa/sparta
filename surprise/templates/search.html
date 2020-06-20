@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>검색창</title>
+    <title>프로필 검색</title>
     <link rel="stylesheet" type="text/css" href="static/search_style.css">
+    <!--서버에서 돌릴 때는 static/search_style.css-->
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
@@ -31,7 +32,7 @@
                     if (response['result'] == 'success') {
                         let profiles = response['profiles'];
                         for (let i = 0; i < profiles.length; i++) {
-                            make_card(profiles[i]['name'], profiles[i]['birthday'], profiles[i]['phonenumber']);
+                            make_card(profiles[i]['name'], profiles[i]['birthday'], profiles[i]['phonenumber'], profiles[i]['_id']);
                         }
                     } else {
                         alert('프로필을 불러오지 못했습니다');
@@ -39,8 +40,8 @@
                 }
             })
         }
-        function make_card(name, birthday, phonenumber) {
-            let temp_html = `<div class="search_box">
+        function make_card(name, birthday, phonenumber, userID) {
+            let temp_html = `<div class="search_box" onclick="window.location.href = '/giftprofile?id=${userID}'">
                 <div class="name">
                     <p class="name_text">${name}</p>
                 </div>
@@ -90,5 +91,4 @@
         <div>내 위시리스트 등록하기</div>
     </a>
 </body>
-
 </html>
