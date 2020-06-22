@@ -84,7 +84,7 @@ def new_gift():
 def gift_page():
     return render_template('gift.html')
 
-@app.route('/yourgiftlist', methods=['GET'])
+@app.route('/yourgiftprofile', methods=['GET'])
 def read_owner():
     user_receive = request.args.get('user_give')
     owners = list(db.profiles.find({'_id':ObjectId(user_receive)}, {'_id': False, 'password': False}))
@@ -93,6 +93,16 @@ def read_owner():
     # print(db.profiles.find_one({"_id": ObjectId(profiles[0]['_id'])}))
     # 아이디 가져다쓰는...그런거...
     return jsonify({'result': 'success', 'owners': owners})
+
+@app.route('/yourgiftlist', methods=['GET'])
+def read_gift():
+    user_receive = request.args.get('user_give')
+    gifts = list(db.gifts.find({'user_id':user_receive}, {'_id': False}))
+    # print(profiles[0])
+    # ObjectId(string_id_from_front)
+    # print(db.profiles.find_one({"_id": ObjectId(profiles[0]['_id'])}))
+    # 아이디 가져다쓰는...그런거...
+    return jsonify({'result': 'success', 'gifts': gifts})
 
 # @app.route('/giftlist', methods=['GET'])
 # def read_profile():

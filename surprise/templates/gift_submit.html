@@ -18,8 +18,10 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script> -->
     <script type="text/javascript">
+        
         function make_profile() {
             // 1. 제목, 저자, 리뷰 내용을 가져옵니다.
+            let user = window.location.href.split('=')[1];
             let product_name = $('#product_name').val();
             let price = $('#price').val();
             let image = $('#image').val();
@@ -42,16 +44,15 @@
                 $('#story').focus();
                 return;
             } 
-
             // 3. POST /reviews 에 저장을 요청합니다.
             $.ajax({
                 type: "POST",
-                url: "/registration",
-                data: { product_name_give: product_name, price_give: price, image_give: image, link_give: link, story_give: story, '_id': 'asdfasdf'},
+                url: "/giftsubmit",
+                data: { product_name_give: product_name, price_give: price, image_give: image, link_give: link, story_give: story, user_id: user},
                 success: function (response) {
                     if (response['result'] == 'success') {
                         alert(response['msg']);
-                        window.location.href = '/giftprofile';
+                        window.location.href = `/giftprofile?id=${user}`;
                         // 나중에 선물창으로 넘겨줘
                     }
                 }

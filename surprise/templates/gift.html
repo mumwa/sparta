@@ -24,22 +24,42 @@
             let user = window.location.href.split('=')[1];
             $.ajax({
                 type: "GET",
-                url: "/yourgiftlist",
+                url: "/yourgiftprofile",
                 data: { user_give: user },
                 success: function (response) {
                     if (response['result'] == 'success') {
+                        console.log('프로필됨');
                         let owners = response['owners'];
                         make_button(user);
                         for (let i = 0; i < owners.length; i++) {
                             make_head(owners[i]['name'], owners[i]['birthday'], owners[i]['phonenumber']);
                         }
+                        //나중에if문 걸어서 모인금액에 따라 바뀌게 이런거 만들자
                     } else {
                         alert('프로필을 불러오지 못했습니다');
                     }
                 }
             })
+            $.ajax({
+                type: "GET",
+                url: "/yourgiftlist",
+                data: { user_give: user },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        console.log('선물됨');
+                        let gifts = response['gifts'];
+                        console.log(gifts);
+                        for (let j = 0; j < gifts.length; j++) {
+                            make_card(gifts[j]['product_name'], gifts[j]['price'], gifts[j]['story']);
+                        }
+                        //나중에if문 걸어서 모인금액에 따라 바뀌게 이런거 만들자
+                    } else {
+                        alert('선물을 불러오지 못했습니다');
+                    }
+                }
+            })
         }
-        
+
         //function listing() {
         // 1. 리뷰 목록을 서버에 요청하기
         // 2. 요청 성공 여부 확인하기
@@ -60,9 +80,9 @@
         //         }
         //     })
         // }
-        function make_button(user){
-            let button_html=
-            `
+        function make_button(user) {
+            let button_html =
+                `
             <a class="gift_button" style="text-decoration:none" onclick="window.location.href = '/giftsubmit?id=${user}'">
                 <img src='https://ifh.cc/g/szLbb3.png' style="margin:23px 23px 23px 40px; width: 40px; height: 41px;">
                 <div>선물 추가하기</div>
@@ -90,10 +110,37 @@
             `;
             $('#head').append(temp_html);
         }
-
         // function getInnerBarStyle() {
         //     return "width: 100px; height: 5px; border: 1px solid black;"
         // }
+        function make_card(product_name, price, story) {
+            let card_html = `
+            <div class="search_box">
+                    <div class="name">
+                        <p class="name_text">${product_name}</p>
+                    </div>
+                    <div class="content">
+                        <div class="incontent">
+                            <img src='https://ifh.cc/g/la7ptz.png' style="margin:20px;">
+                            <div class="percent">0%</div>
+                            <div style="width: 200px; height: 5px; border: 1px solid black;">
+                                <div id="inner-bar"></div>
+                            </div>
+                            <div>
+                                <div>${price}</div>
+                                <div>/0</div>
+                            </div>
+                            ${story}
+                            </div>
+                            <a class="finish_button">
+                                결제하기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `
+            $('#box').append(card_html);
+        }
     </script>
 
 </head>
@@ -126,7 +173,22 @@
                         <div class="incontent">
                             <img src='https://ifh.cc/g/la7ptz.png' style="margin:20px;">
                             <div class="percent">0%</div>
-
+                            <div style="width: 200px; height: 5px; border: 1px solid black;">
+                                <div id="inner-bar"></div>
+                            </div>
+                            <div>
+                                <div>89000</div>
+                                <div>/89000</div>
+                            </div>
+                            <div>저는 반지하 자취방에서 살고 있습니다.
+                                <br>창문 밖에 바로 벽이 있어서 환기가 안되고
+                                <br>공기가 안 좋아요. 금방 습해집니다.
+                                <br>공기청정기를 선물로 받으면
+                                <br>정말 좋을 것 같아요.
+                            </div>
+                            <a class="finish_button">
+                                결제하기
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -157,12 +219,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
     <div id="button_space">
-    
+
     </div>
 </body>
 
