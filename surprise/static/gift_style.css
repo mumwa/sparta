@@ -1,11 +1,11 @@
 .wrapper{
     font-family: 'Nanum Gothic', sans-serif;
     text-align: center;
-    width: 1920px;
+    max-width: 1920px;
+    min-width: 1270px;
     display: block;
 }
 .navi{
-    height: 1920px;
     height: 120px;
     box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
     font-weight: bolder;
@@ -64,7 +64,6 @@
 }
 .search_bar{
     width: 1920px;
-    font-weight: bolder;
     /* position: relative; */
     margin: 0 135px;
 }
@@ -76,6 +75,7 @@
     width: 480px;
     height: 58px;
     font-size: 20px;
+    font-weight: bold;
     box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
     background-color: #6b50db;
     border-radius: 17px 17px 0 0;
@@ -87,7 +87,7 @@
 }
 .content{
     width: 480px;
-    height: 430px;
+    height: 440px;
     box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
     background-color: #ffffff;
     border-radius: 0 0 17px 17px;
@@ -95,50 +95,108 @@
     margin: 20px auto 20px auto;
 }
 .incontent{
-    padding:auto;
+    text-align: center;
     margin-top: -18px;
     /* 위에 absolute 걸고 padding 18px 넣으면 name이랑 incontent랑 떨어져서 -18px함 왜 그런지는 모르겠음 */
 }
+.percent{
+    width: 50px;
+    height: 35px;
+    font-family: NanumGothic;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.17;
+    text-align: center;
+    color: #6b50db;
+}
+.incontent>div{
+    margin: auto;
+}
 .content>img{
     margin:auto 0 auto 0;
+}
+.priced{
+    font-weight: bold;
+    display: inline;
+}
+.space{
+    height: 10px;
+}
+.bar{
+    width: 184px;
+    height: 17px;
+    background-color: #dbdbdb;
+}
+.money_button{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 226px;
+    height: 56px;
+    border: none;
+    border-radius: 28px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ff60dd;
+    text-align: center;
+    font-family: NanumGothic;
+    font-size: 18px;
+    line-height: 1.17;
+    color: #ffffff;
+    margin: auto;
+}
+.money_button>div{
+    margin: auto;
+}
+.gift_story{
+    font-weight: bold;
+    font-size: 8px;
+    color: #606060;
+    margin: auto;
+    width: 350px;
+    height: 100px;
+    text-overflow:ellipsis;
 }
 /*다된박스*/
 .finish_name{
     width: 480px;
     height: 58px;
     font-size: 20px;
+    font-weight: bold;
     box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
     background-color: #ffdc31;
     border-radius: 17px 17px 0 0;
 }
-.finish_name_text{
-    color:white;
-    position: absolute;
-    margin: 18px 0px 0px 36px;
-}
 .finish_content{
     width: 480px;
-    height: 430px;
+    height: 440px;
     box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
     background-color: #fffcea;
     border-radius: 0 0 17px 17px;
     text-align: center;
     margin: 20px auto 20px auto;
 }
-.finish_incontent{
-    padding:auto;
-    margin-top: -18px;
-    /* 위에 absolute 걸고 padding 18px 넣으면 name이랑 incontent랑 떨어져서 -18px함 왜 그런지는 모르겠음 */
-}
-.finish_content>img{
-    margin:auto 0 auto 0;
-}
-.finish_button{
+.finish_money_button{
+    display: flex;
+    flex-wrap: nowrap;
     width: 226px;
     height: 56px;
+    border: none;
     border-radius: 28px;
-    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     background-color: #ffdc31;
+    text-align: center;
+    font-family: NanumGothic;
+    font-size: 18px;
+    line-height: 1.17;
+    color: #ffffff;
+    margin: auto;
+}
+.finish_money_button>div{
+    margin: auto;
+}
+.finish_inner-bar{
+    width: 184px;
+    height: 17px;
+    background-color: #ff60dd;
 }
 /*으아악*/
 .head_table{

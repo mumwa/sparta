@@ -18,19 +18,47 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script> -->
     <script>
-        window.onload = listing();
+        window.onload = listing("/profilelist");
 
-        function listing() {
+        function searchWithName() {
+            let search_name = $('#name_search').val();
+
+            let baseUrlString = "/profilelist";
+            
+            if (search_name) {
+                baseUrlString = baseUrlString + '?name=' + search_name;
+            }
+
+            listing(baseUrlString);
+
+        }
+
+        function searchWithPhone() {
+            let search_name = $('#phone_search').val();
+
+            let baseUrlString = "/profilelist";
+
+            if (search_name) {
+                baseUrlString = baseUrlString + '?phonenumber=' + search_name;
+            }
+
+            listing(baseUrlString);
+
+        }
+
+        function listing(urlString) {
             // 1. 리뷰 목록을 서버에 요청하기
             // 2. 요청 성공 여부 확인하기
             // 3. 요청 성공했을 때 리뷰를 올바르게 화면에 나타내기
+
             $.ajax({
                 type: "GET",
-                url: "/profilelist",
+                url: urlString,
                 data: {},
                 success: function (response) {
                     if (response['result'] == 'success') {
                         let profiles = response['profiles'];
+                        $('#box').html('');
                         for (let i = 0; i < profiles.length; i++) {
                             make_card(profiles[i]['name'], profiles[i]['birthday'], profiles[i]['phonenumber'], profiles[i]['_id']);
                         }
@@ -75,10 +103,10 @@
                     <a href=""><img style="max-width:50px; margin: 35px 10px 35px auto;"
                             src='https://ifh.cc/g/LskOlA.png'></a>
                 </div>
-                <div class="one_search"><label>이름으로 검색</label><input placeholder="성을 포함한 이름을 적어주세요"><button
-                        class="search_button"></button></div>
-                <div class="one_search"><label>전화번호로 검색</label><input placeholder="-하이픈 없이 번호를 검색해주세요"><button
-                        class="search_button"></button></div>
+                <div class="one_search"><label>이름으로 검색</label><input placeholder="성을 포함한 이름을 적어주세요"
+                        id="name_search"><button class="search_button" onclick="searchWithName()"></button></div>
+                <div class="one_search"><label>전화번호로 검색</label><input placeholder="-하이픈 없이 번호를 검색해주세요"
+                        id="phone_search"><button class="search_button" onclick="searchWithPhone()"></button></div>
             </div>
         </div>
     </div>
@@ -91,4 +119,5 @@
         <div>내 위시리스트 등록하기</div>
     </a>
 </body>
+
 </html>

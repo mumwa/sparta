@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>등록창</title>
-    <link rel="stylesheet" type="text/css"
-        href="static/registration_style.css">
+    <title>선물 결제</title>
+    <link rel="stylesheet" type="text/css" href="static/payment_style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
@@ -18,45 +17,30 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script> -->
     <script type="text/javascript">
-        function make_profile() {
+        function do_pay() {
             // 1. 제목, 저자, 리뷰 내용을 가져옵니다.
-            let name = $('#name').val();
-            let phonenumber = $('#phonenumber').val();
-            let bank = $('#bank').val();
-            let account = $('#account').val();
-            let address = $('#address').val();
+            let get = window.location.href.split('=')[1];
+            let user = get.split('&')[0];
+            let gift_id = window.location.href.split('=')[2];
+            console.log(gift_id)
+            let present = $('#present').val();
+            let giver_name = $('#giver_name').val();
+            let giver_ph = $('#giver_ph').val();
             let password = $('#password').val();
             let password_again = $('#password_again').val();
-            let birthday = $('#birthday').val();
+            let message = $('#message').val();
 
-            // 2. 제목, 저자, 리뷰 중 하나라도 입력하지 않았을 경우 alert를 띄웁니다.
-            if (name == '') {
-                alert('이름을 입력해주세요');
-                $('#name').focus();
+            if (present == '') {
+                alert('선물할 금액을 입력해주세요');
+                $('#present').focus();
                 return;
-            } else if (phonenumber == '') {
-                alert('번호를 입력해주세요');
-                $('#phonenumber').focus();
+            } else if (giver_name == '') {
+                alert('이름 입력해주세요');
+                $('#giver_name').focus();
                 return;
-            } else if (birthday == '') {
-                alert('생일을 입력해주세요');
-                $('#birthday').focus();
-                return;
-            } else if (bank == '') {
-                alert('은행을 입력해주세요');
-                $('#bank').focus();
-                return;
-            } else if (account == '') {
-                alert('계좌을 입력해주세요');
-                $('#account').focus();
-                return;
-            } else if (address == '') {
-                alert('주소를 입력해주세요');
-                $('#address').focus();
-                return;
-            } else if (password == '') {
-                alert('비밀번호를 입력해주세요');
-                $('#password').focus();
+            } else if (giver_ph == '') {
+                alert('전화번호를 입력해주세요');
+                $('#giver_ph').focus();
                 return;
             } else if (password_again == '') {
                 alert('비밀번호 재입력해주세요');
@@ -67,16 +51,15 @@
                 $('#password_again').focus();
                 return;
             }
-
             // 3. POST /reviews 에 저장을 요청합니다.
             $.ajax({
                 type: "POST",
-                url: "/registration",
-                data: { name_give: name, phonenumber_give: phonenumber, birthday_give: birthday, bank_give: bank, account_give: account, address_give: address, password_give: password },
+                url: "/giftpay",
+                data: { present_give: present, giver_name_give: giver_name, giver_ph_give: giver_ph, password_give: password, message_give: message, user_give:user, gift_id_give: gift_id},
                 success: function (response) {
                     if (response['result'] == 'success') {
                         alert(response['msg']);
-                        window.location.href = '/';
+                        window.location.href = `/giftprofile?id=${user}`;
                         // 나중에 선물창으로 넘겨줘
                     }
                 }
@@ -91,58 +74,40 @@
     <div id="wrapper">
         <div class="navi" class="box">
             <div class="navi_content" onclick="window.location.href = '/'">
-                <img style="max-width:50px; margin: 35px 15px 35px auto;"
-                        src='https://ifh.cc/g/LskOlA.png'></a>
-                <div style="margin: 40px auto 40px 15px;">위시리스트 등록하기</div>
+                <img style="max-width:50px; margin: 35px 15px 35px auto;" src='https://ifh.cc/g/LskOlA.png'></a>
+                <div style="margin: 40px auto 40px 15px;">선물하기</div>
             </div>
         </div>
-        <div class="head">
+        <!-- <div class="head">
             <div class="title_wrapper">
                 <div class="title">
-                    <img style="width:34px; height:43px; margin: 5px 20px 0 0;" src='https://ifh.cc/g/cNkpIs.png'>
-                    <div>프로필 등록하기</div>
+                    <img style="width:45px; height:45px; margin: 5px 20px 0 0;" src='https://ifh.cc/g/6Mozy1.png'>
+                    <div>선물하기</div>
                 </div>
                 <div class="explain">
-                    프로필을 등록하면 사용자들이 검색을 통해 찾을 수 있고,
-                    <br>선물 등록이 가능합니다.
-                    <br>이름, 전화번호, 생일만 공개됩니다.
+                    모금 100%가 달성된 선물은 배송됩니다.
+                    <br>기간 내에 달성되지 않은 선물에 모금된 금액은 수수료를 제외하고
+                    <br>선물 받은 분의 계좌로 입금됩니다.
                 </div>
             </div>
-            <button class="cancel_button">취소</button>
-            <button id="submit_button" onclick="make_profile()">완료</button>
-        </div>
+        </div> -->
         <div class="registration">
             <div class="registration_content">
                 <table>
                     <tr>
-                        <td class="table_head">이름</td>
-                        <td class="table_head">번호</td>
+                        <td colspan="2" class="table_head">선물할 가격</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="short_input" id="present">원</td>
+                    </tr>
+                    <tr>
+                        <td class="table_head">산물하는분 이름</td>
+                        <td class="table_head">전화번호</td>
                     </tr>
                     <tr class="table_input">
-                        <td><input class="short_input" id="name"></td>
-                        <td><input class="short_input" id="phonenumber"></td>
+                        <td><input class="short_input" id="giver_name"></td>
+                        <td><input class="short_input" id="giver_ph"></td>
                     </tr>
-                    <tr>
-                        <td colspan="2" class="table_head">생일</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input class="long_input" id="birthday"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="table_head">주소지</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input class="long_input" id="address"></td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2" class="table_head">계좌번호</td>
-                    </tr>
-                    <tr class="table_input">
-                        <td><input class="short_input" id="bank"></td>
-                        <td><input class="short_input" id="account"></td>
-                    </tr>
-
                     <tr>
                         <td class="table_head">프로필 수정 비밀번호</td>
                         <td class="table_head">비밀번호 확인</td>
@@ -151,7 +116,18 @@
                         <td><input class="short_input" id="password"></td>
                         <td><input class="short_input" id="password_again"></td>
                     </tr>
+                    <tr>
+                        <td colspan="2" class="table_head">메세지</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><textarea class="big_input" id="message"></textarea>
+                    </tr>
+
                 </table>
+                <a class="money_button" style="text-decoration:none"
+                    onclick=do_pay()>
+                    <div>선물하기</div>
+                </a>
             </div>
         </div>
         <div class="foot"></div>
@@ -173,4 +149,5 @@
         <img style="min-width:50px; max-width: 70px;" scr='https://ifh.cc/g/51HFMJ.png'>
     </div> -->
 </body>
+
 </html>
