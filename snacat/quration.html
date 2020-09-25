@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <title>Layout</title>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+	<meta property="og:title" content="주고 싶은 선물:기프트벅" />
+    <meta property="og:description" content="어쩌고저쩌고 어쩌고저쩌고" />
+    <meta property="og:image" content="{{ url_for('static', filename='birthday.jpg') }}" />
+    <title>프로필 검색</title>
+    <!-- <link rel="stylesheet" type="text/css" href=""> -->
+    <!--서버에서 돌릴 때는 static/search_style.css-->
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script> -->
+	<style>
+		* {margin: 0; padding: 0;}
+        body {background-color: white; font-family: 'Noto Sans KR', sans-serif; min-width: 320px;}
+		#wrap {width: 100%; height: auto; margin: 0 auto;}
+		/* 전체 속성 */
+		header {width: 100%; height: 3em; background-color:white; position: fixed;}
+		/*상단 바*/
+		.navi{height:100%;}
+		a{color: #393939; text-decoration:none} 
+		#list{list-style:none; margin:15% 5% 5% 5%; opacity:0; letter-spacing: -0.05em;}
+		#menu>ul>li{margin: 10%; font-size: 90%; color:#393939;}
+		#menu{width:0%; height:100%; right:0px; background-color:white; position:fixed; transition-duration: 0.4s;}
+		#menu_back{width:100%; height:100%; left:0px; background:black; position:fixed; opacity: 0; transition-duration: 0.4s;}
+		/*네비*/
+		article {width: 100%; height: 40em; background-color: #ffd54f;}
+		.divideLine{width: 100%; height: 1em; background-color:#F0F0F0;}
+		#main{
+			margin: auto;
+			text-align: center;
+			background-image: url('/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/storyBack_.png');
+			background-repeat: repeat-x;
+			background-position: center;
+			background-size:cover;
+		}
+		#brand{
+			margin: auto;
+			text-align: center;
+			background-image: url('/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/storyBack.png');
+			background-repeat: repeat-x;
+			background-position:center;
+			background-size:cover;
+		}
+		#introduce{background-color:white; height: 30em;}
+		#review{background-color:white;}
+		#compo{background-color:#3D1C4C;}
+		#how{background-color:white;}
+		#QnA{background-color:white;}
+		section {overflow: hidden; padding: 5%; width: 90%; background-color: #ffca28;}
+		section > div {width: 18%; margin: 1%; height: 170px; background-color: #ff9800; float: left; border-radius: 5px;}
+		footer {width: 100%; height: 100px; background-color: #ffb300;}
+		@media (min-width: 768px){
+			section > div {width: 31.333333%;}
+		}		
+	</style>
+	<script>
+	//누르면 네비가 나오거나 들어감
+	function clickNav(){
+		//네비가 열렸는지 닫혔는지 판독
+		if(document.getElementById("menu_back").style.opacity==0){
+			openNav();
+		}else{
+			closeNav();
+		}
+	}
+	function openNav() {
+		document.getElementById("list").style.transitionDelay= "0.2s";
+		document.getElementById("list").style.transitionDuration= "0.2s";
+		document.getElementById("menu").style.width = "80%";
+		document.getElementById("menu_back").style.opacity = "0.5";
+		document.getElementById("list").style.opacity = "1";
+	}
+	function closeNav() {
+		document.getElementById("list").style.transitionDelay= "0s";
+		document.getElementById("list").style.transitionDuration= "0.1s";
+		document.getElementById("menu").style.width = "0%";
+		document.getElementById("menu_back").style.opacity = "0";
+		document.getElementById("list").style.opacity = "0";
+	}
+	//누르면 그걸 db로 보냄
+	//적으면 그걸 db로 보냄
+	//선택되지 않으면 
+	</script>
+</head>
+<body>
+	<div class="navi">
+		<div id="menu_back" onclick="closeNav()"></div>
+		<div id="menu">
+			<div style="width:100%; height:20%; background-color:#3D1C4C;"></div>
+			<ul id="list">
+				<li><a href="#main" onclick="closeNav()">시작하기</a></li>
+				<li><a href="#brand" onclick="closeNav()">브랜드 스토리</a></li>
+				<li><a href="#introduce" onclick="closeNav()">소개</a></li>
+				<li><a href="#review" onclick="closeNav()">후기</a></li>
+				<li><a href="#compo" onclick="closeNav()">구성</a></li>
+				<li><a href="#how" onclick="closeNav()">이용 방법</a></li>
+				<li><a href="#QnA" onclick="closeNav()">QnA</a></li>
+			</ul>
+		</div>
+	</div>
+	<header>
+		<img class="logo" src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/web_source/1_navi/big_logo.png" style="height:30%; margin:1.1em; margin-left:2em;">
+		<img class="hamburger" src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/hamburger.png" style="height:35%;  margin:1em; float:right;" onclick="clickNav()">
+	</header>
+	<div id="wrap">
+		<article id="main">
+			<img src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/mainText@2x.png" style="width:70%; margin:50% auto 0 auto;">
+			<img src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/1month@2x.png" style="width:45%; margin:10% auto 0 auto;">
+		</article>
+		<article id="brand">
+			<img src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/brandText@2x.png" style="width:70%; margin:50% auto;">
+		</article>
+		<article id="introduce">
+			<div style="margin:25% auto 0 auto; text-align:center;">
+				<img src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/introduceText@2x.png" style="width: 50%;">
+			</div>
+			
+			<div style="margin:5% auto 0 auto; text-align:center;">
+				<img src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/그룹 102@2x.png" style="width: 35%;">
+				<img src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/그룹 103@2x.png" style="width: 35%;">
+				<img src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/그룹 104@2x.png" style="width: 35%;">
+				<img src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/그룹 105@2x.png" style="width: 35%;">
+			</div>
+			<div style="margin:5% auto 0 auto; text-align:center;">
+				<img src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/seeMore.png" style="width: 25%;">
+			</div>
+		</article>
+		<div class="divideLine"></div>
+		<article id="review">
+			
+		</article>
+		<article id="compo">
+			
+		</article>
+		<article id="how">
+			
+		</article>
+		<div class="divideLine"></div>
+		<article id="QnA">
+			
+		</article>
+	</div>
+</body>
+</html>

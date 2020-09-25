@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Layout</title>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <meta property="og:title" content="주고 싶은 선물:기프트벅" />
+    <meta property="og:description" content="어쩌고저쩌고 어쩌고저쩌고" />
+    <meta property="og:image" content="{{ url_for('static', filename='birthday.jpg') }}" />
+    <title>프로필 검색</title>
+    <!-- <link rel="stylesheet" type="text/css" href=""> -->
+    <!--서버에서 돌릴 때는 static/search_style.css-->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: white;
+            font-family: 'Noto Sans KR', sans-serif;
+            min-width: 320px;
+            position: relative;
+        }
+
+        #wrap {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .wrapper {
+            text-align: center;
+            margin: auto;
+        }
+
+        /* 전체 속성 */
+        header {
+            width: 100%;
+            background-color: white;
+            position: fixed;
+            height: 3em;
+            z-index: 3;
+        }
+
+        footer {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            height: 3em;
+            display: flex;
+            z-index: 3;
+        }
+
+        /*네비*/
+        article {
+            z-index: -1;
+            position: fixed;
+            margin-top: 5em;
+            width: 100%;
+            height: 45em;
+            background-color: white;
+            text-align: center;
+            margin: auto;
+        }
+
+        #basic1 {
+            z-index: 1;
+            background-color: red;
+        }
+
+        #basic2 {
+            background-color: orange;
+        }
+
+        #interest {
+            background-color: yellow;
+        }
+
+        #like {
+            background-color: greenyellow;
+        }
+
+        #hate {
+            background-color: green;
+
+        }
+
+        #shape {
+            background-color: blue;
+        }
+
+        #alle {
+            background-color: blueviolet;
+        }
+
+        #complete {
+            background-color: white;
+        }
+
+        #navi {
+            right: 0;
+            width: 4em;
+            height: 100%;
+            margin: 3em auto auto auto;
+            position: fixed;
+            background-color: white;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .navi_wrapper {}
+
+        #one {
+            background-color: #3D1C4C;
+            color: white;
+        }
+
+        .shadow {
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16)
+        }
+
+        .pagebutton {
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 50%;
+            background-color: #F0F0F0;
+            color: #3D1C4C;
+            font-weight: bold;
+            margin: 2em 1em;
+            text-align: center;
+        }
+
+        .forfix {
+            width: 100%;
+            height: 3em;
+        }
+
+        #next {
+            width: 50%;
+            height: 3em;
+            text-align: center;
+            margin: auto;
+            background-color: white;
+            color: #2e2e2e;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        #prev {
+            width: 50%;
+            height: 3em;
+            text-align: center;
+            margin: auto;
+            background-color: #F0F0F0;
+            color: #2e2e2e;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        @media (min-width: 768px) {
+            .wrapper {
+                width: 70%;
+            }
+
+            article {
+                height: 40em;
+            }
+
+            header {
+                width: 100%;
+                background-color: white;
+                position: fixed;
+                height: 5em;
+            }
+
+
+        }
+
+        @media (min-width: 1030px) {
+            .wrapper {
+                width: 40%;
+            }
+
+            article {
+                height: 40em;
+            }
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script> -->
+    <script>
+        let page = 1;
+
+        window.onload = function reset() {
+            let page = 1;
+        }
+        function next() {
+            if (page == 8) {
+                return;
+            } else {
+                page++;
+            }
+            show();
+
+        }
+        function prev() {
+            if (page == 1) {
+                return;
+            } else {
+                page--;
+            }
+            show();
+        }
+        function show() {
+            console.log(page);
+            if (page == 1) {
+                basic1();
+            }
+            if (page == 2) {
+                basic2();
+            }
+            if (page == 3) {
+                interest();
+            }
+            if (page == 4) {
+                like();
+            }
+            if (page == 5) {
+                hate();
+            }
+            if (page == 6) {
+                shape();
+                document.getElementById("next").style.backgroundColor = "white";
+                document.getElementById("next").style.color = "#2e2e2e";
+                let temp_html = `다음 페이지&gt;`;
+                $('#next').empty();
+                $('#next').append(temp_html);
+            }
+            if (page == 7) {
+                alle();
+                document.getElementById("next").style.backgroundColor = "#3D1C4C";
+                document.getElementById("next").style.color = "white";
+                let temp_html = `제출`;
+                $('#next').empty();
+                $('#next').append(temp_html);
+            }
+            if (page == 8) {
+                complete();
+                document.getElementById("next").style.backgroundColor = "white";
+                document.getElementById("next").style.color = "#2e2e2e";
+                let temp_html = `다음 페이지&gt;`;
+                $('#next').empty();
+                $('#next').append(temp_html);
+            }
+        }
+        function basic1() {
+            document.getElementById("basic1").style.zIndex = "1";
+            document.getElementById("basic2").style.zIndex = "-1";
+            document.getElementById("interest").style.zIndex = "-1";
+            document.getElementById("like").style.zIndex = "-1";
+            document.getElementById("hate").style.zIndex = "-1";
+            document.getElementById("shape").style.zIndex = "-1";
+            document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("complete").style.zIndex = "-1";
+
+            document.getElementById("one").style.backgroundColor = "#3D1C4C";
+            document.getElementById("two").style.backgroundColor = "#F0F0F0";
+            document.getElementById("three").style.backgroundColor = "#F0F0F0";
+            document.getElementById("four").style.backgroundColor = "#F0F0F0";
+            document.getElementById("five").style.backgroundColor = "#F0F0F0";
+            document.getElementById("six").style.backgroundColor = "#F0F0F0";
+            document.getElementById("seven").style.backgroundColor = "#F0F0F0";
+            document.getElementById("one").style.color = "white";
+            document.getElementById("two").style.color = "#3D1C4C";
+            document.getElementById("three").style.color = "#3D1C4C";
+            document.getElementById("four").style.color = "#3D1C4C";
+            document.getElementById("five").style.color = "#3D1C4C";
+            document.getElementById("six").style.color = "#3D1C4C";
+            document.getElementById("seven").style.color = "#3D1C4C";
+        }
+        function basic2() {
+            document.getElementById("basic1").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "1";
+            document.getElementById("interest").style.zIndex = "-1";
+            document.getElementById("like").style.zIndex = "-1";
+            document.getElementById("hate").style.zIndex = "-1";
+            document.getElementById("shape").style.zIndex = "-1";
+            document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("complete").style.zIndex = "-1";
+
+            document.getElementById("one").style.backgroundColor = "#F0F0F0";
+            document.getElementById("two").style.backgroundColor = "#3D1C4C";
+            document.getElementById("three").style.backgroundColor = "#F0F0F0";
+            document.getElementById("four").style.backgroundColor = "#F0F0F0";
+            document.getElementById("five").style.backgroundColor = "#F0F0F0";
+            document.getElementById("six").style.backgroundColor = "#F0F0F0";
+            document.getElementById("seven").style.backgroundColor = "#F0F0F0";
+            document.getElementById("one").style.color = "#3D1C4C";
+            document.getElementById("two").style.color = "white";
+            document.getElementById("three").style.color = "#3D1C4C";
+            document.getElementById("four").style.color = "#3D1C4C";
+            document.getElementById("five").style.color = "#3D1C4C";
+            document.getElementById("six").style.color = "#3D1C4C";
+            document.getElementById("seven").style.color = "#3D1C4C";
+
+        }
+        function interest() {
+            document.getElementById("basic1").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
+            document.getElementById("interest").style.zIndex = "1";
+            document.getElementById("like").style.zIndex = "-1";
+            document.getElementById("hate").style.zIndex = "-1";
+            document.getElementById("shape").style.zIndex = "-1";
+            document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("complete").style.zIndex = "-1";
+
+            document.getElementById("one").style.backgroundColor = "#F0F0F0";
+            document.getElementById("two").style.backgroundColor = "#F0F0F0";
+            document.getElementById("three").style.backgroundColor = "#3D1C4C";
+            document.getElementById("four").style.backgroundColor = "#F0F0F0";
+            document.getElementById("five").style.backgroundColor = "#F0F0F0";
+            document.getElementById("six").style.backgroundColor = "#F0F0F0";
+            document.getElementById("seven").style.backgroundColor = "#F0F0F0";
+            document.getElementById("one").style.color = "#3D1C4C";
+            document.getElementById("two").style.color = "#3D1C4C";
+            document.getElementById("three").style.color = "white";
+            document.getElementById("four").style.color = "#3D1C4C";
+            document.getElementById("five").style.color = "#3D1C4C";
+            document.getElementById("six").style.color = "#3D1C4C";
+            document.getElementById("seven").style.color = "#3D1C4C";
+
+        }
+        function like() {
+            document.getElementById("basic1").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
+            document.getElementById("interest").style.zIndex = "-1";
+            document.getElementById("like").style.zIndex = "1";
+            document.getElementById("hate").style.zIndex = "-1";
+            document.getElementById("shape").style.zIndex = "-1";
+            document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("complete").style.zIndex = "-1";
+
+            document.getElementById("one").style.backgroundColor = "#F0F0F0";
+            document.getElementById("two").style.backgroundColor = "#F0F0F0";
+            document.getElementById("three").style.backgroundColor = "#F0F0F0";
+            document.getElementById("four").style.backgroundColor = "#3D1C4C";
+            document.getElementById("five").style.backgroundColor = "#F0F0F0";
+            document.getElementById("six").style.backgroundColor = "#F0F0F0";
+            document.getElementById("seven").style.backgroundColor = "#F0F0F0";
+            document.getElementById("one").style.color = "#3D1C4C";
+            document.getElementById("two").style.color = "#3D1C4C";
+            document.getElementById("three").style.color = "#3D1C4C";
+            document.getElementById("four").style.color = "white";
+            document.getElementById("five").style.color = "#3D1C4C";
+            document.getElementById("six").style.color = "#3D1C4C";
+            document.getElementById("seven").style.color = "#3D1C4C";
+
+        }
+        function hate() {
+            document.getElementById("basic1").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
+            document.getElementById("interest").style.zIndex = "-1";
+            document.getElementById("like").style.zIndex = "-1";
+            document.getElementById("hate").style.zIndex = "1";
+            document.getElementById("shape").style.zIndex = "-1";
+            document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("complete").style.zIndex = "-1";
+
+            document.getElementById("one").style.backgroundColor = "#F0F0F0";
+            document.getElementById("two").style.backgroundColor = "#F0F0F0";
+            document.getElementById("three").style.backgroundColor = "#F0F0F0";
+            document.getElementById("four").style.backgroundColor = "#F0F0F0";
+            document.getElementById("five").style.backgroundColor = "#3D1C4C";
+            document.getElementById("six").style.backgroundColor = "#F0F0F0";
+            document.getElementById("seven").style.backgroundColor = "#F0F0F0";
+            document.getElementById("one").style.color = "#3D1C4C";
+            document.getElementById("two").style.color = "#3D1C4C";
+            document.getElementById("three").style.color = "#3D1C4C";
+            document.getElementById("four").style.color = "#3D1C4C";
+            document.getElementById("five").style.color = "white";
+            document.getElementById("six").style.color = "#3D1C4C";
+            document.getElementById("seven").style.color = "#3D1C4C";
+
+        }
+        function shape() {
+            document.getElementById("basic1").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
+            document.getElementById("interest").style.zIndex = "-1";
+            document.getElementById("like").style.zIndex = "-1";
+            document.getElementById("hate").style.zIndex = "-1";
+            document.getElementById("shape").style.zIndex = "1";
+            document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("complete").style.zIndex = "-1";
+
+            document.getElementById("one").style.backgroundColor = "#F0F0F0";
+            document.getElementById("two").style.backgroundColor = "#F0F0F0";
+            document.getElementById("three").style.backgroundColor = "#F0F0F0";
+            document.getElementById("four").style.backgroundColor = "#F0F0F0";
+            document.getElementById("five").style.backgroundColor = "#F0F0F0";
+            document.getElementById("six").style.backgroundColor = "#3D1C4C";
+            document.getElementById("seven").style.backgroundColor = "#F0F0F0";
+            document.getElementById("one").style.color = "#3D1C4C";
+            document.getElementById("two").style.color = "#3D1C4C";
+            document.getElementById("three").style.color = "#3D1C4C";
+            document.getElementById("four").style.color = "#3D1C4C";
+            document.getElementById("five").style.color = "#3D1C4C";
+            document.getElementById("six").style.color = "white";
+            document.getElementById("seven").style.color = "#3D1C4C";
+
+        }
+        function alle() {
+            document.getElementById("basic1").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
+            document.getElementById("interest").style.zIndex = "-1";
+            document.getElementById("like").style.zIndex = "-1";
+            document.getElementById("hate").style.zIndex = "-1";
+            document.getElementById("shape").style.zIndex = "-1";
+            document.getElementById("alle").style.zIndex = "1";
+            document.getElementById("complete").style.zIndex = "-1";
+
+            document.getElementById("one").style.backgroundColor = "#F0F0F0";
+            document.getElementById("two").style.backgroundColor = "#F0F0F0";
+            document.getElementById("three").style.backgroundColor = "#F0F0F0";
+            document.getElementById("four").style.backgroundColor = "#F0F0F0";
+            document.getElementById("five").style.backgroundColor = "#F0F0F0";
+            document.getElementById("six").style.backgroundColor = "#F0F0F0";
+            document.getElementById("seven").style.backgroundColor = "#3D1C4C";
+            document.getElementById("one").style.color = "#3D1C4C";
+            document.getElementById("two").style.color = "#3D1C4C";
+            document.getElementById("three").style.color = "#3D1C4C";
+            document.getElementById("four").style.color = "#3D1C4C";
+            document.getElementById("five").style.color = "#3D1C4C";
+            document.getElementById("six").style.color = "#3D1C4C";
+            document.getElementById("seven").style.color = "white";
+
+        }
+        function complete() {
+            document.getElementById("basic1").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
+            document.getElementById("interest").style.zIndex = "-1";
+            document.getElementById("like").style.zIndex = "-1";
+            document.getElementById("hate").style.zIndex = "-1";
+            document.getElementById("shape").style.zIndex = "-1";
+            document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("complete").style.zIndex = "1";
+
+            document.getElementById("button").style.zIndex = "-2";
+            document.getElementById("navi").style.zIndex = "-2";
+
+            document.getElementById("prev").style.zIndex = "-2";
+            document.getElementById("next").style.zIndex = "-2";
+        }
+        // function completebutton() {
+        //     // if (page==7){
+        //     //     let temp_html = `다음 페이지&gt;`;
+        //     // }else{
+        //     //     let temp_html = `제출`;
+        //     // }
+        //     $('#next').append(temp_html);
+        // }
+    </script>
+</head>
+
+<body>
+    <!-- <div id="warn">
+        <div style=" width:100%; height:100%; background-color: black; opacity: 0.5; position:fixed; z-index: 3;"></div>
+        <div style=" width:100%; height:100%; position:fixed; z-index: 4;">
+            <div style="width: 50%; height:5em; margin:auto; text-align: center;">
+                <div>
+                    
+                </div>
+                <div>
+                    
+                </div>
+                <div>
+                    <button>아니오</button>
+                    <button>네</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <header>
+        <img class="back" src="static/backbutton.png" style="height:30%; margin:1.1em; margin-left:2em;"
+            onclick="window.location.href = '/'">
+    </header>
+    <div id="navi">
+        <div class="navi_wrapper">
+            <div class="pagebutton" id="one">1</div>
+            <div class="pagebutton" id="two">2</div>
+            <div class="pagebutton" id="three">3</div>
+            <div class="pagebutton" id="four">4</div>
+            <div class="pagebutton" id="five">5</div>
+            <div class="pagebutton" id="six">6</div>
+            <div class="pagebutton" id="seven">7</div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div id="wrap">
+            <article id="basic1">
+                <input type="text">
+                <input type="text">
+            </article>
+            <article id="basic2">
+                <div class="forfix"></div><input type="text">
+            </article>
+            <article id="interest">
+                <div class="forfix"></div><input type="text">
+            </article>
+            <article id="like">
+                <div class="forfix"></div><input type="text">
+            </article>
+            <article id="hate">
+                <div class="forfix"></div><input type="text">
+            </article>
+            <article id="shape">
+                <div class="forfix"></div><input type="text">
+            </article>
+            <article id="alle">
+                <div class="forfix"></div>
+                <input type="text">
+            </article>
+            <article id="complete">
+                <div class="forfix"></div>
+                <div style="display: block; margin:7em auto auto auto; text-align: center;">
+                    <img src="static/completeMessage.png" style="width: 70%;">
+                    <img src="static/completePic.png" style="width: 50%;">
+                    <img>
+                    <div onclick="window.location.href = '/'" style="text-decoration: underline; font-weight: bold; height: 2em;">메인으로 돌아가기&gt;&gt;</div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <footer class="shadow" id="button">
+        <div onclick="prev()" id="prev">
+            &lt;이전 페이지</div>
+        <div onclick="next()" id="next">
+            다음 페이지&gt;</div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Layout</title>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+	<meta property="og:title" content="주고 싶은 선물:기프트벅" />
+	<meta property="og:description" content="어쩌고저쩌고 어쩌고저쩌고" />
+	<meta property="og:image" content="{{ url_for('static', filename='birthday.jpg') }}" />
+	<title>프로필 검색</title>
+	<!-- <link rel="stylesheet" type="text/css" href=""> -->
+	<!--서버에서 돌릴 때는 static/search_style.css-->
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			background-color: white;
+			font-family: 'Noto Sans KR', sans-serif;
+			min-width: 320px;
+			position: relative;
+		}
+
+		#wrap {
+			width: 100%;
+			height: auto;
+			margin: 0 auto;
+		}
+
+		/* 전체 속성 */
+		header {
+			width: 100%;
+			background-color: white;
+			position: fixed;
+			height: 3em;
+		}
+
+		/*상단 바*/
+		.navi {
+			height: 100%;
+			position: fixed;
+		}
+
+		a {
+			color: #393939;
+			text-decoration: none
+		}
+
+		#list {
+			list-style: none;
+			margin: 15% 5% 5% 5%;
+			opacity: 0;
+			letter-spacing: -0.05em;
+		}
+
+		#menu>ul>li {
+			margin: 10%;
+			font-size: 90%;
+			color: #393939;
+		}
+
+		#menu {
+			width: 0%;
+			height: 100%;
+			right: 0px;
+			background-color: white;
+			position: fixed;
+			transition-duration: 0.4s;
+		}
+
+		#menu_back {
+			width: 0%;
+			height: 100%;
+			left: 0px;
+			background: black;
+			position: fixed;
+			opacity: 0;
+		}
+
+		/*네비*/
+		article {
+			width: 100%;
+			height: 40em;
+			background-color: white;
+		}
+
+		.divideLine {
+			width: 100%;
+			height: 1em;
+			background-color: #F0F0F0;
+		}
+
+		#main {
+			margin: auto;
+			text-align: center;
+			background-image: url('static/storyBack_.png');
+			background-repeat: repeat-x;
+			background-position: center;
+			background-size: cover;
+		}
+
+		#brand {
+			margin: auto;
+			text-align: center;
+			background-image: url('static/storyBack.png');
+			background-repeat: repeat-x;
+			background-position: center;
+			background-size: cover;
+		}
+
+		#introduce {
+			background-color: white;
+			height: 35em;
+		}
+
+		.intro_icon {
+			width: 30%;
+			padding: 4%;
+		}
+
+		#review {
+			background-color: white;
+			z-index: -2;
+			position: relative;
+		}
+
+		.small {
+			height: 1.7em;
+		}
+
+		.vertical {
+			text-align: center;
+			margin: auto;
+		}
+
+		.swiper-container {
+			width: 80%;
+			height: 25em;
+			background-color: white;
+			margin: auto;
+			z-index: -1;
+			position: relative;
+		}
+
+		.reviewicon {
+			margin: auto;
+			text-align: center;
+		}
+
+		#compo {
+			background-color: #3D1C4C;
+		}
+
+		#how {
+			background-color: white;
+		}
+
+		#QnA {
+			background-color: white;
+		}
+
+		footer {
+			width: 100%;
+			height: 100px;
+			background-color: white;
+		}
+
+		#noMobile {
+			color: white;
+			text-align: center;
+			height: 0;
+			width: 100%;
+			background-color: #3D1C4C;
+			position: fixed;
+			bottom: 0;
+		}
+
+		@media (min-width: 768px) {
+			.wrapper {
+				text-align: center;
+				margin: auto;
+				width: 70%;
+			}
+
+			article {
+				height: 70em;
+			}
+
+			#menu {
+				width: 0%;
+				height: 100%;
+				right: 0px;
+				background-color: white;
+				position: fixed;
+				transition-duration: 0.4s;
+			}
+
+			#menu_back {
+				width: 0;
+				height: 100%;
+				left: 0px;
+				background: transparent;
+				position: fixed;
+				opacity: 0;
+			}
+
+			.intro_icon {
+				width: 22%;
+				padding: 0;
+			}
+
+			header {
+				width: 100%;
+				background-color: white;
+				position: fixed;
+				height: 5em;
+			}
+
+			.small {
+				height: 2em;
+			}
+			#noMobile {
+				height: 5em;
+			}
+
+		}
+
+		@media (min-width: 1030px) {
+			.wrapper {
+				text-align: center;
+				margin: auto;
+				width: 30%;
+			}
+
+			article {
+				height: 100%;
+				padding-bottom: 10em;
+			}
+
+			#menu {
+				width: 0%;
+				height: 100%;
+				right: 0px;
+				background-color: white;
+				position: fixed;
+				transition-duration: 0.4s;
+			}
+
+			#menu_back {
+				width: 0;
+				height: 100%;
+				left: 0;
+				background: transparent;
+				position: fixed;
+				opacity: 0;
+			}
+			#noMobile {
+				height: 5em;
+			}
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script> -->
+	<script>
+		//누르면 네비가 나오거나 들어감
+		function clickNav() {
+			//네비가 열렸는지 닫혔는지 판독
+			if (document.getElementById("menu_back").style.opacity == 0) {
+				openNav();
+			} else {
+				closeNav();
+			}
+		}
+		function openNav() {
+			var windowWidth = $(window).width();
+			if (windowWidth < 768) {
+				document.getElementById("menu").style.width = "80%";
+			} else if (windowWidth < 1030) {
+				document.getElementById("menu").style.width = "50%";
+			} else {
+				document.getElementById("menu").style.width = "20%";
+			}
+			document.getElementById("list").style.transitionDelay = "0.2s";
+			document.getElementById("list").style.transitionDuration = "0.2s";
+
+			document.getElementById("menu_back").style.opacity = "0.5";
+			document.getElementById("menu_back").style.width = "100%";
+
+			document.getElementById("list").style.opacity = "1";
+		}
+		function closeNav() {
+			document.getElementById("list").style.transitionDelay = "0s";
+			document.getElementById("list").style.transitionDuration = "0.1s";
+			document.getElementById("menu").style.width = "0%";
+			document.getElementById("menu_back").style.opacity = "0";
+			document.getElementById("menu_back").style.width = "0%";
+			document.getElementById("list").style.opacity = "0";
+			console.log('닫혔음');
+		}
+		function Q1() {
+			if (document.getElementById("a1").style.width == "0%"){
+				document.getElementById("a1").style.width = "80%";
+				document.getElementById("a2").style.width = "0%";
+				document.getElementById("a3").style.width = "0%";
+				document.getElementById("a4").style.width = "0%";
+			}else{
+				document.getElementById("a1").style.width = "0%";
+			}
+		}
+		function Q2() {
+			if (document.getElementById("a2").style.width == "0%"){
+				document.getElementById("a1").style.width = "0%";
+				document.getElementById("a2").style.width = "80%";
+				document.getElementById("a3").style.width = "0%";
+				document.getElementById("a4").style.width = "0%";
+			}else{
+				document.getElementById("a2").style.width = "0%";
+			}
+		}
+		function Q3() {
+			if (document.getElementById("a3").style.width == "0%"){
+				document.getElementById("a1").style.width = "0%";
+				document.getElementById("a2").style.width = "0%";
+				document.getElementById("a3").style.width = "80%";
+				document.getElementById("a4").style.width = "0%";
+			}else{
+				document.getElementById("a3").style.width = "0%";
+			}
+		}
+		function Q4() {
+			if (document.getElementById("a4").style.width == "0%"){
+				document.getElementById("a1").style.width = "0%";
+				document.getElementById("a2").style.width = "0%";
+				document.getElementById("a3").style.width = "0%";
+				document.getElementById("a4").style.width = "80%";
+			}else{
+				document.getElementById("a4").style.width = "0%";
+			}
+		}
+			
+
+		function work() {
+			console.log('작동함');
+		}
+	</script>
+</head>
+
+<body>
+	<div class="navi">
+		<div id="menu_back" onclick="closeNav()"></div>
+		<div id="menu">
+			<div style="width:100%; height:20%; background-color:#3D1C4C;"></div>
+			<ul id="list">
+				<li><a href="#main" onclick="closeNav()">시작하기</a></li>
+				<li><a href="#brand" onclick="closeNav()">브랜드 스토리</a></li>
+				<li><a href="#introduce" onclick="closeNav()">소개</a></li>
+				<li><a href="#review" onclick="closeNav()">후기</a></li>
+				<li><a href="#compo" onclick="closeNav()">구성</a></li>
+				<li><a href="#how" onclick="closeNav()">이용 방법</a></li>
+				<li><a href="#QnA" onclick="closeNav()">QnA</a></li>
+			</ul>
+		</div>
+	</div>
+	<header>
+		<img class="logo" src="static/web_source/1_navi/big_logo.png"
+			style="height:30%; margin:1.1em; margin-left:2em;" onclick="window.location.href = '/'" >
+		<!-- <button style="height: 5em;" onclick="work()">작동해줘</button> -->
+		<img class="hamburger" src="static/hamburger.png" style="height:35%;  margin:1em; float:right;"
+			onclick="clickNav()">
+	</header>
+	<div class="wrapper">
+		<div id="wrap">
+			<article id="main">
+				<img src="static/mainText@2x.png" style="width:70%; margin:50% auto 0 auto;">
+				<img src="static/1month@2x.png" style="width:45%; margin:10% auto 0 auto;" onclick="window.location.href = '/curate'">
+			</article>
+			<article id="brand">
+				<img src="static/brandText@2x.png" style="width:70%; margin:50% auto;">
+			</article>
+			<article id="introduce">
+				<div style="margin:25% auto 0 auto; text-align:center;">
+					<img src="static/introduceText@2x.png" style="width: 50%;">
+				</div>
+				<div style="margin:5% auto 0 auto; text-align:center;">
+					<img src="static/그룹 102@2x.png" class="intro_icon">
+					<img src="static/그룹 103@2x.png" class="intro_icon">
+					<img src="static/그룹 104@2x.png" class="intro_icon">
+					<img src="static/그룹 105@2x.png" class="intro_icon">
+				</div>
+				<div style="margin:5% auto 0 auto; text-align:center;">
+						<img src="static/seeMore@2x.png" style="width: 25%;" id="brandgo" onclick="window.location.href = '/brandstory'">
+				</div>
+			</article>
+			<div class="divideLine"></div>
+			<article id="review">
+				<div class="vertical"><img src="static/reviewText@2x.png" style="width: 40%; margin: 10% 0 10% 0;">
+				</div>
+				<div class="vertical" style="display: flex;">
+					<!-- <div class="reviewicon" id="left-button-prev"><img
+						src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/leftbutton.png"></div> -->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide" style="background-color:#ff9800;">Slide 1</div>
+							<div class="swiper-slide" style="background-color:#ffb300;">Slide 2</div>
+							<div class="swiper-slide" style="background-color:#ffca28;">Slide 3</div>
+							<div class="swiper-slide" style="background-color:#ffca28;">Slide 4</div>
+							<div class="swiper-slide" style="background-color:#ffca28;">Slide 5</div>
+							<div class="swiper-slide" style="background-color:#ffca28;">Slide 6</div>
+							<div class="swiper-slide" style="background-color:#ffca28;">Slide 7</div>
+							<div class="swiper-slide" style="background-color:#ffca28;">Slide 8</div>
+							<div class="swiper-slide" style="background-color:#ffca28;">Slide 9</div>
+						</div>
+					</div>
+					<!-- <div class="reviewicon" id="right-button-next"><img
+						src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/rightbutton.png"></div>-->
+				</div>
+				<div class="vertical"></div>
+			</article>
+			<article id="compo">
+				<div style="text-align:center;">
+					<img src="static/compText@2x.png" style="width:50%; margin:4em auto 0 auto;">
+				</div>
+				<div style="text-align:center;">
+					<img src="static/compImage@2x.png" style="width:80%; margin:2em auto 0 auto;">
+				</div>
+				<div style="text-align:center;">
+					<img src="static/compButton@2x.png" style="width:45%; margin:2em auto 0 auto;" onclick="window.location.href = '/curate'">
+				</div>
+			</article>
+			<article id="how">
+				<div style="margin:10% 0 5% 10%"><img src="static/howto@2x.png" class="small">
+				</div>
+				<div style="text-align:center"><img src="static/order@2x.png" style="width:85%">
+				</div>
+			</article>
+			<div class="divideLine"></div>
+			<article id="QnA" style="height: 100%;">
+				<div style="margin:10% 0 5% 10%"><img src="static/Q&A@2x.png" class="small">
+				</div>
+				<div style="text-align:center">
+					<div>
+						<img src="static/Q1@2x.png" style="width:80%; vertical-align: bottom;" onclick="Q1()">
+					</div>
+					<div><img id="a1" src="static/a1@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;" id="a1"></div>
+
+					<div><img src="static/Q2@2x.png" style="width:80%; vertical-align: bottom;" onclick="Q2()"></div>
+					<div><img src="static/a2@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;" id="a2"></div>
+
+					<div><img src="static/Q3@2x.png" style="width:80%; vertical-align: bottom;" onclick="Q3()"></div>
+					<div><img src="static/a3@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;" id="a3"></div>
+
+					<div><img src="static/Q4@2x.png" style="width:80%; vertical-align: bottom;" onclick="Q4()"></div>
+					<div><img src="static/a4@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;" id="a4"></div>
+				</div>
+				<!-- 나중에 요소 길이들을 세로기준으로 맞추고 세로를 0->100 조절하는 애니메이션으로 하면 더 예쁠듯... -->
+			</article>
+		</div>
+	</div>
+	<div id="noMobile">
+		<div style="margin: 1em auto auto auto;">세로형 모바일 기기에 최적화 된 사이트입니다.</div>
+	</div>
+	<!-- 이 스크립트를 바디 밖으로 빼면 스와이프가 작동하지 않습니다 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+	<script>
+		var mySwiper = new Swiper('.swiper-container', {
+			autoplay: {
+				delay: 2500,
+			},
+			// navigation: { 
+			// 	nextEl: '#right-button-next', 
+			// 	prevEl: '#left-button-prev', 
+			// },
+		});
+	</script>
+</body>
+
+</html>
