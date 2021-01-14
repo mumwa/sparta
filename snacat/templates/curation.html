@@ -2,21 +2,29 @@
 <html lang="ko">
 
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177791837-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-177791837-2');
+    </script>
     <meta charset="UTF-8">
-    <title>Layout</title>
+    <title>큐레이션 정보 입력</title>
     <meta name="viewport" content="initial-scale=1.0, width=device-width">
-    <meta property="og:title" content="주고 싶은 선물:기프트벅" />
-    <meta property="og:description" content="어쩌고저쩌고 어쩌고저쩌고" />
-    <meta property="og:image" content="{{ url_for('static', filename='birthday.jpg') }}" />
+    <meta property="og:title" content="스내캣:맞춤형 프리미엄 간식" />
+    <meta property="og:description" content="매달 큐레이션 된 3종류 간식과 건강관리 브로셔를 받아보세요" />
+    <meta property="og:image" content="{{ url_for('static', filename='main_pic@2x.png') }}" />
     <title>프로필 검색</title>
     <!-- <link rel="stylesheet" type="text/css" href=""> -->
     <!--서버에서 돌릴 때는 static/search_style.css-->
+
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         * {
             margin: 0;
@@ -69,40 +77,98 @@
             background-color: white;
             text-align: center;
             margin: auto;
+            overflow: hidden;
+        }
+
+        .headline {
+            font-weight: bolder;
+            font-size: 1.2em;
+            margin: auto;
+            text-align: center;
+        }
+
+        .line {
+            font-weight: 700;
+            font-size: 1em;
+            height: 2em;
+            margin: auto;
+            padding-left: 2em;
+            text-align: left;
+        }
+
+        input {
+            border: 0;
+            font-size: 1.7em;
+            padding: 0.2em;
+            border-radius: 1.5em;
+            background-color: #f0f0f0;
+        }
+
+        .btn.btn-primary {
+            background-color: white;
+            color: #3D1C4C;
+            border: 0;
+            border-radius: 1em;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            font-weight: bolder;
+            font-size: 1em;
+        }
+        .btn.btn-primary:active:hover{
+            color: white;
+            background-color: #3D1C4C;
+        }
+
+        .mad {
+            background-color: white;
+            color: #3D1C4C;
+            border: 0;
+            border-radius: 1em;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            font-weight: bolder;
+            font-size: 1em;
+        }
+
+
+        input[type='checkbox'] {
+
+        }
+
+        input[type='radio'] {
+        }
+
+
+        /* .btn.btn-primary:active:hover {
+            background-color: #3D1C4C;
+            color: white;
+        } */
+
+        td {
+            padding: 0.1em;
+        }
+
+        .long {
+            text-align: center;
+            margin: auto;
+            width: 90%;
+        }
+
+        .short {
+            text-align: center;
+            margin: auto;
+            width: 80%;
+        }
+
+        table {
+            text-align: center;
+            width: 80%;
         }
 
         #basic1 {
             z-index: 1;
-            background-color: red;
         }
 
-        #basic2 {
-            background-color: orange;
-        }
-
-        #interest {
-            background-color: yellow;
-        }
-
-        #like {
-            background-color: greenyellow;
-        }
-
-        #hate {
-            background-color: green;
-
-        }
-
-        #shape {
-            background-color: blue;
-        }
-
-        #alle {
-            background-color: blueviolet;
-        }
-
-        #complete {
-            background-color: white;
+        #umin {
+            opacity: 0;
         }
 
         #navi {
@@ -115,8 +181,6 @@
             text-align: center;
             z-index: 2;
         }
-
-        .navi_wrapper {}
 
         #one {
             background-color: #3D1C4C;
@@ -165,12 +229,10 @@
             font-weight: bold;
         }
 
-        @media (min-width: 768px) {
-            .wrapper {
-                width: 70%;
-            }
 
+        @media (min-width: 768px) {
             article {
+                width: 70%;
                 height: 40em;
             }
 
@@ -185,11 +247,8 @@
         }
 
         @media (min-width: 1030px) {
-            .wrapper {
-                width: 40%;
-            }
-
             article {
+                width: 50%;
                 height: 40em;
             }
         }
@@ -230,30 +289,34 @@
                 basic1();
             }
             if (page == 2) {
-                basic2();
-            }
-            if (page == 3) {
                 interest();
             }
-            if (page == 4) {
+            if (page == 3) {
                 like();
             }
-            if (page == 5) {
+            if (page == 4) {
                 hate();
             }
-            if (page == 6) {
+            if (page == 5) {
                 shape();
+            }
+            if (page == 6) {
+                alle();
                 document.getElementById("next").style.backgroundColor = "white";
                 document.getElementById("next").style.color = "#2e2e2e";
                 let temp_html = `다음 페이지&gt;`;
                 $('#next').empty();
                 $('#next').append(temp_html);
+
             }
             if (page == 7) {
-                alle();
-                document.getElementById("next").style.backgroundColor = "#3D1C4C";
-                document.getElementById("next").style.color = "white";
-                let temp_html = `제출`;
+
+                basic2();
+                document.getElementById("next").style.backgroundColor = "transparent";
+                document.getElementById("next").style.height = "0";
+                document.getElementById("button").style.backgroundColor = "transparent";
+                // document.getElementById("next").style.color = "white";
+                let temp_html = ``;
                 $('#next').empty();
                 $('#next').append(temp_html);
             }
@@ -261,6 +324,9 @@
                 complete();
                 document.getElementById("next").style.backgroundColor = "white";
                 document.getElementById("next").style.color = "#2e2e2e";
+                document.getElementById("umin").style.opacity = "1";
+                document.getElementById("button").style.opacity = "0";
+                document.getElementById("button").style.height = "0";
                 let temp_html = `다음 페이지&gt;`;
                 $('#next').empty();
                 $('#next').append(temp_html);
@@ -268,12 +334,12 @@
         }
         function basic1() {
             document.getElementById("basic1").style.zIndex = "1";
-            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("interest").style.zIndex = "-1";
             document.getElementById("like").style.zIndex = "-1";
             document.getElementById("hate").style.zIndex = "-1";
             document.getElementById("shape").style.zIndex = "-1";
             document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("complete").style.zIndex = "-1";
 
             document.getElementById("one").style.backgroundColor = "#3D1C4C";
@@ -291,14 +357,14 @@
             document.getElementById("six").style.color = "#3D1C4C";
             document.getElementById("seven").style.color = "#3D1C4C";
         }
-        function basic2() {
+        function interest() {
             document.getElementById("basic1").style.zIndex = "-1";
-            document.getElementById("basic2").style.zIndex = "1";
-            document.getElementById("interest").style.zIndex = "-1";
+            document.getElementById("interest").style.zIndex = "1";
             document.getElementById("like").style.zIndex = "-1";
             document.getElementById("hate").style.zIndex = "-1";
             document.getElementById("shape").style.zIndex = "-1";
             document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("complete").style.zIndex = "-1";
 
             document.getElementById("one").style.backgroundColor = "#F0F0F0";
@@ -315,16 +381,15 @@
             document.getElementById("five").style.color = "#3D1C4C";
             document.getElementById("six").style.color = "#3D1C4C";
             document.getElementById("seven").style.color = "#3D1C4C";
-
         }
-        function interest() {
+        function like() {
             document.getElementById("basic1").style.zIndex = "-1";
-            document.getElementById("basic2").style.zIndex = "-1";
-            document.getElementById("interest").style.zIndex = "1";
-            document.getElementById("like").style.zIndex = "-1";
+            document.getElementById("interest").style.zIndex = "-1";
+            document.getElementById("like").style.zIndex = "1";
             document.getElementById("hate").style.zIndex = "-1";
             document.getElementById("shape").style.zIndex = "-1";
             document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("complete").style.zIndex = "-1";
 
             document.getElementById("one").style.backgroundColor = "#F0F0F0";
@@ -341,16 +406,15 @@
             document.getElementById("five").style.color = "#3D1C4C";
             document.getElementById("six").style.color = "#3D1C4C";
             document.getElementById("seven").style.color = "#3D1C4C";
-
         }
-        function like() {
+        function hate() {
             document.getElementById("basic1").style.zIndex = "-1";
-            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("interest").style.zIndex = "-1";
-            document.getElementById("like").style.zIndex = "1";
-            document.getElementById("hate").style.zIndex = "-1";
+            document.getElementById("like").style.zIndex = "-1";
+            document.getElementById("hate").style.zIndex = "1";
             document.getElementById("shape").style.zIndex = "-1";
             document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("complete").style.zIndex = "-1";
 
             document.getElementById("one").style.backgroundColor = "#F0F0F0";
@@ -367,16 +431,15 @@
             document.getElementById("five").style.color = "#3D1C4C";
             document.getElementById("six").style.color = "#3D1C4C";
             document.getElementById("seven").style.color = "#3D1C4C";
-
         }
-        function hate() {
+        function shape() {
             document.getElementById("basic1").style.zIndex = "-1";
-            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("interest").style.zIndex = "-1";
             document.getElementById("like").style.zIndex = "-1";
-            document.getElementById("hate").style.zIndex = "1";
-            document.getElementById("shape").style.zIndex = "-1";
+            document.getElementById("hate").style.zIndex = "-1";
+            document.getElementById("shape").style.zIndex = "1";
             document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("complete").style.zIndex = "-1";
 
             document.getElementById("one").style.backgroundColor = "#F0F0F0";
@@ -393,16 +456,15 @@
             document.getElementById("five").style.color = "white";
             document.getElementById("six").style.color = "#3D1C4C";
             document.getElementById("seven").style.color = "#3D1C4C";
-
         }
-        function shape() {
+        function alle() {
             document.getElementById("basic1").style.zIndex = "-1";
-            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("interest").style.zIndex = "-1";
             document.getElementById("like").style.zIndex = "-1";
             document.getElementById("hate").style.zIndex = "-1";
-            document.getElementById("shape").style.zIndex = "1";
-            document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("shape").style.zIndex = "-1";
+            document.getElementById("alle").style.zIndex = "1";
+            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("complete").style.zIndex = "-1";
 
             document.getElementById("one").style.backgroundColor = "#F0F0F0";
@@ -419,16 +481,15 @@
             document.getElementById("five").style.color = "#3D1C4C";
             document.getElementById("six").style.color = "white";
             document.getElementById("seven").style.color = "#3D1C4C";
-
         }
-        function alle() {
+        function basic2() {
             document.getElementById("basic1").style.zIndex = "-1";
-            document.getElementById("basic2").style.zIndex = "-1";
             document.getElementById("interest").style.zIndex = "-1";
             document.getElementById("like").style.zIndex = "-1";
             document.getElementById("hate").style.zIndex = "-1";
             document.getElementById("shape").style.zIndex = "-1";
-            document.getElementById("alle").style.zIndex = "1";
+            document.getElementById("alle").style.zIndex = "-1";
+            document.getElementById("basic2").style.zIndex = "1";
             document.getElementById("complete").style.zIndex = "-1";
 
             document.getElementById("one").style.backgroundColor = "#F0F0F0";
@@ -445,7 +506,6 @@
             document.getElementById("five").style.color = "#3D1C4C";
             document.getElementById("six").style.color = "#3D1C4C";
             document.getElementById("seven").style.color = "white";
-
         }
         function complete() {
             document.getElementById("basic1").style.zIndex = "-1";
@@ -509,36 +569,345 @@
     </div>
     <div class="wrapper">
         <div id="wrap">
+            <form class="gform" method="POST" data-email="hy0903@yonsei.ac.kr"
+                    action="https://script.google.com/macros/s/AKfycbzl11rLkaEAnAK85TcM2HGMlt7Lsu1yjplcp7urVaFkTB617IDM/exec">
             <article id="basic1">
-                <input type="text">
-                <input type="text">
-            </article>
-            <article id="basic2">
-                <div class="forfix"></div><input type="text">
+                <div class="forfix">
+                </div>
+                <table>
+                    <tr>
+                        <td class="headline">기본 정보</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td class="line">이름</td>
+                        <td class="line">연령</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="short" name="catname" value=""></td>
+                        <td><input type="text" class="short" name="catold" value=""></td>
+                    </tr>
+                    <tr>
+                        <td class="line">묘종</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="text" class="long" name="cattype" value=""></td>
+                    </tr>
+                    <tr>
+                        <td class="line">
+                            중성화여부
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label class="btn btn-primary" style="width: 40%;">
+                                <input type="radio" name="neutralization" value="yes">O
+                            </label>
+                            <label class="btn btn-primary" style="width: 40%;">
+                                <input type="radio" name="neutralization" value="no">X
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="line">체중</td>
+                    </tr>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <tr>
+                        <td colspan="2">
+                            <label class="btn btn-primary" style="width: 80%;">
+                                <input type="radio" name="weight" value="thin">마름
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label class="btn btn-primary" style="width: 80%;">
+                                <input type="radio" name="weight" value="medium">보통
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label class="btn btn-primary" style="width: 80%;">
+                                <input type="radio" name="weight" value="heavy">비만
+                            </label>
+                        </td>
+                    </tr>
+                    </div>
+                </table>
             </article>
             <article id="interest">
-                <div class="forfix"></div><input type="text">
+                <div class="forfix"></div>
+                <table>
+                    <tr>
+                        <td class="headline">기본 정보</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td class="line">관심건강</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-primary">
+                                <input type="checkbox" name="interest" value="hair">모질
+                            </label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="water">음수량</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="hairball">헤어볼</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="hardpoup">변비</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="waterpoup">설사</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="pt">체중 관리</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="teeth">약한 치아</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="skin">피부</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="kidney">신장</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="heart">심장</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="eye">눈</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="interest" value="joint">관절</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="line">기타</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="long" name="interestinp" value=""></td>
+                    </tr>
+                </table>
             </article>
             <article id="like">
-                <div class="forfix"></div><input type="text">
+                <div class="forfix"></div>
+                <table>
+                    <tr>
+                        <td class="headline">기호성</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td class="line">선호 재료</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="chicken">닭</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="pig">돼지</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="tuna">참치</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="salmon">연어</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="cow">소</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="duck">오리</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="sheep">양</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="dear">사슴</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="yellowtail">황태</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="smelt">열빙어</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="like" value="egg">계란</label>                         
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="line">기타</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="long" name="likeinp" value=""></td>
+                    </tr>
+                </table>
             </article>
             <article id="hate">
-                <div class="forfix"></div><input type="text">
+                <div class="forfix"></div>
+                <table>
+                    <tr>
+                        <td class="headline">기호성</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td class="line">비선호 재료</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="chicken">닭</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="pig">돼지</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="tuna">참치</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="salmon">연어</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="cow">소</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="duck">오리</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="sheep">양</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="dear">사슴</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="yellowtail">황태</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="smelt">열빙어</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="hate" value="egg">계란</label> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="line">기타</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="long" name="hateinp" value=""></td>
+                    </tr>
+                </table>
             </article>
             <article id="shape">
-                <div class="forfix"></div><input type="text">
+                <div class="forfix"></div>
+                <table>
+                    <tr>
+                        <td class="headline">기호성</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td class="line">비선호 제형</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-primary"><input type="checkbox" name="shape" value="beef">사사미/육포</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="shape" value="dryice">동결건조</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="shape" value="wet">습식간식</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="shape" value="jerk">저키류</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="shape" value="cookie">쿠키/비스킷</label>  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="line">기타</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="long" name="shapeinp" value=""></td>
+                    </tr>
+                </table>
             </article>
             <article id="alle">
                 <div class="forfix"></div>
-                <input type="text">
+                <table>
+                    <tr>
+                        <td class="headline">알레르기</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td class="line">알레르기 유무</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label class="btn btn-primary" style="width: 40%;"><input type="radio" name="alle" value="yes">유</label>
+                            <label class="btn btn-primary" style="width: 40%;"><input type="radio" name="alle" value="no">무</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="line">주단백질</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 1em;">
+                            <label class="btn btn-primary"><input type="checkbox" name="mainprtn" value="dryice">닭</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="mainprtn" value="wet">오리</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="mainprtn" value="jerk">소</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="mainprtn" value="cookie">돼지</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="mainprtn" value="cookie">양</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="mainprtn" value="cookie">연어</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="mainprtn" value="cookie">참치</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="mainprtn" value="cookie">흙염소</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="mainprtn" value="cookie">사슴</label>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="line">보조단백질</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-primary"><input type="checkbox" name="subprtn" value="dryice">계란</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="subprtn" value="wet">멸치</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="mainprtn" value="cookie">황태</label>  
+                            <label class="btn btn-primary"><input type="checkbox" name="subprtn" value="jerk">락토프리 우유</label>
+                            <label class="btn btn-primary"><input type="checkbox" name="subprtn" value="cookie">치즈</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="line">기타</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="long" name="elleinp" value=""></td>
+                    </tr>
+                </table>
+
+            </article>
+            <article id="basic2">
+                <div class="forfix"></div>
+                <table>
+                    <tr>
+                        <td class="headline">고객 정보</td>
+                    </tr>
+                </table>
+                
+                    <table>
+                        <tr>
+                            <td class="line">집사님 이름</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="long" name="이름" value=""></td>
+                        </tr>
+                        <tr>
+                            <td class="line">전화번호</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="long" name="번호" value=""></td>
+                        </tr>
+                        <tr>
+                            <td class="line">배송지</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="long" name="배송지" value=""></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="width: 100%;
+                            display: flex;
+                            height: 5em;" id="lastsubmit">
+                                    <button type="submit" value="제출" style="
+                                border: 0;
+                                border-radius:1.5em;
+                                width: 40%;
+                                height: 3em;
+                                text-align: center;
+                                margin: 1em;
+                                margin: auto;
+                                background-color: #3D1C4C;
+                                color: white;
+                                font-size: 1em;
+                                font-weight: bold;" onclick="next()">제출</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- <p>
+                        <strong>아이디</strong>
+                        <input type="text" name="name" value="아이디 입력">
+                    </p>
+                    <p>
+                        <strong>비밀번호</strong>
+                        <input type="password" name="password" value="비밀번호 입력">
+                    </p>
+                    <p>
+                        <strong>성별</strong>
+                        <input type="radio" name="gender" value="M">남자
+                        <input type="radio" name="gender" value="F">여자
+                    </p>
+                    <p>
+                        <strong>응시분야</strong>
+                        <input type="checkbox" name="part" value="eng">영어
+                        <input type="checkbox" name="part" value="math">수학
+                    </p>
+                    <p>
+                        
+                    </p> -->
+                    <!-- <div style="display:none" class="thankyou_message"> -->
+                    <!-- You can customize the thankyou message by editing the code below -->
+                    <!-- <h2><em>Thanks</em> for contacting us! We will get back to you soon!
+                        </h2>
+                    </div> -->
+                </form>
             </article>
             <article id="complete">
                 <div class="forfix"></div>
-                <div style="display: block; margin:7em auto auto auto; text-align: center;">
-                    <img src="static/completeMessage.png" style="width: 70%;">
-                    <img src="static/completePic.png" style="width: 50%;">
+                <div style="display: block; margin:4em auto auto auto; text-align: center;">
+                    <img src="static/textComplete.png" style="width: 70%; margin: 1em;">
+                    <img src="static/completePic.png" style="width: 50%; margin: 1em;" id="umin">
                     <img>
-                    <div onclick="window.location.href = '/'" style="text-decoration: underline; font-weight: bold; height: 2em;">메인으로 돌아가기&gt;&gt;</div>
+                    <div onclick="window.location.href = '/'"
+                        style="text-decoration: underline; font-weight: bold; height: 2em;">메인으로 돌아가기&gt;&gt;</div>
                 </div>
             </article>
         </div>
@@ -549,6 +918,8 @@
         <div onclick="next()" id="next">
             다음 페이지&gt;</div>
     </footer>
+    <script data-cfasync="false" type="text/javascript"
+        src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선물 등록</title>
+    <link rel="stylesheet" type="text/css"
+        href="static/gift_submit_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script> -->
+    <script type="text/javascript">
+        
+        function make_profile() {
+            // 1. 제목, 저자, 리뷰 내용을 가져옵니다.
+            let user = window.location.href.split('=')[1];
+            let product_name = $('#product_name').val();
+            let price = $('#price').val();
+            let image = $('#image').val();
+            let link = $('#link').val();
+            let story = $('#story').val();
+            if (product_name == '') {
+                alert('제품명을 입력해주세요');
+                $('#product_name').focus();
+                return;
+            } else if (price == '') {
+                alert('가격을 입력해주세요');
+                $('#price').focus();
+                return;
+            } else if (link == '') {
+                alert('링크를 입력해주세요');
+                $('#link').focus();
+                return;
+            } else if (story == '') {
+                alert('사연을 입력해주세요');
+                $('#story').focus();
+                return;
+            } 
+            // 3. POST /reviews 에 저장을 요청합니다.
+            $.ajax({
+                type: "POST",
+                url: "/giftsubmit",
+                data: { product_name_give: product_name, price_give: price, image_give: image, link_give: link, story_give: story, user_id: user},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        alert(response['msg']);
+                        window.location.href = `/giftprofile?id=${user}`;
+                        // 나중에 선물창으로 넘겨줘
+                    }
+                }
+            })
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="navi" class="box">
+            <div class="navi_content" onclick="window.location.href = '/'">
+                <img style="max-width:50px; margin: 35px 15px 35px auto;" src='static/logo.png'></a>
+                <div style="margin: 40px auto 40px 15px;">위시리스트 등록하기</div>
+            </div>
+        </div>
+        <div class="head">
+            <div class="title_wrapper">
+                <div class="title">
+                    <img style="width:45px; height:45px; margin: 5px 20px 0 0;" src='https://ifh.cc/g/6Mozy1.png'>
+                    <div>선물 등록하기</div>
+                </div>
+                <div class="explain">
+                    프로필에 선물을 등록하여 공개할 수 있습니다.
+                    <br>모금 100%가 달성된 선물은 배송됩니다.
+                    <br>기간 내에 달성되지 않은 선물에 모금된 금액은 수수료를 제외하고 계좌로 입금됩니다.
+                </div>
+            </div>
+            <button class="cancel_button">취소</button>
+            <button id="submit_button" onclick="make_profile()">완료</button>
+        </div>
+        <div class="registration">
+            <div class="registration_content">
+                <table>
+                    <tr>
+                        <td class="table_head">제품명</td>
+                        <td class="table_head">가격</td>
+                    </tr>
+                    <tr class="table_input">
+                        <td><input class="short_input" id="product_name"></td>
+                        <td><input class="short_input" id="price"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="table_head">사진</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="long_input" id="image"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="table_head">링크</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="long_input" id="link"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="table_head">사연</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><textarea class="big_input" id="story"></textarea>
+                    </tr>
+                    
+                </table>
+            </div>
+        </div>
+        <div class="foot"></div>
+        <!-- <div class="navi">
+        <div class="box_wrapper">
+            <div class="input_box">
+                <div style="margin: 35px 10px 35px auto;">
+                    <a href=""><img style="max-width:50px;" src='https://ifh.cc/g/LskOlA.png'></a>
+                    위시리스트 등록하기
+                </div>
+            </div>
+        </div>
+    </div> -->
+        <!-- <div class="search_bar">
+            <div class="box_wrapper">
+
+            </div>
+        </div>
+        <img style="min-width:50px; max-width: 70px;" scr='https://ifh.cc/g/51HFMJ.png'>
+    </div> -->
+</body>
+
+</html>

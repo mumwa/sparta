@@ -2,12 +2,20 @@
 <html lang="ko">
 
 <head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177791837-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-177791837-2');
+	</script>
 	<meta charset="UTF-8">
-	<title>Layout</title>
+	<title>브랜드 스토리</title>
 	<meta name="viewport" content="initial-scale=1.0, width=device-width">
-	<meta property="og:title" content="주고 싶은 선물:기프트벅" />
-	<meta property="og:description" content="어쩌고저쩌고 어쩌고저쩌고" />
-	<meta property="og:image" content="{{ url_for('static', filename='birthday.jpg') }}" />
+	<meta property="og:title" content="스내캣:맞춤형 프리미엄 간식" />
+	<meta property="og:description" content="매달 큐레이션 된 3종류 간식과 건강관리 브로셔를 받아보세요" />
+	<meta property="og:image" content="{{ url_for('static', filename='main_pic@2x.png') }}" />
 	<title>프로필 검색</title>
 	<!-- <link rel="stylesheet" type="text/css" href=""> -->
 	<!--서버에서 돌릴 때는 static/search_style.css-->
@@ -145,7 +153,7 @@
 				</div>
 			</article>
 			<article style="height: 100%; margin-bottom: 5em;">
-					<img src="static/1month@2x.png" style="width:45%; margin:10% auto 0 auto;" onclick="window.location.href = '/curate'">
+					<img src="static/1month_why.png" style="width:45%; margin:10% auto 0 auto;" onclick="window.location.href = '/curate'">
 			</article>
 		</div>
 	</div>

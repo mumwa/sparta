@@ -2,12 +2,20 @@
 <html lang="ko">
 
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177791837-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'UA-177791837-2');
+	</script>
 	<meta charset="UTF-8">
-	<title>Layout</title>
+	<title>SNACAT</title>
 	<meta name="viewport" content="initial-scale=1.0, width=device-width">
-	<meta property="og:title" content="주고 싶은 선물:기프트벅" />
-	<meta property="og:description" content="어쩌고저쩌고 어쩌고저쩌고" />
-	<meta property="og:image" content="{{ url_for('static', filename='birthday.jpg') }}" />
+	<meta property="og:title" content="스내캣:맞춤형 프리미엄 간식" />
+	<meta property="og:description" content="매달 큐레이션 된 3종류 간식과 건강관리 브로셔를 받아보세요" />
+	<meta property="og:image" content="{{ url_for('static', filename='main_pic@2x.png') }}" />
 	<title>프로필 검색</title>
 	<!-- <link rel="stylesheet" type="text/css" href=""> -->
 	<!--서버에서 돌릴 때는 static/search_style.css-->
@@ -143,12 +151,20 @@
 		}
 
 		.swiper-container {
-			width: 80%;
+			width: 90%;
 			height: 25em;
 			background-color: white;
+			text-align: center;
 			margin: auto;
 			z-index: -1;
 			position: relative;
+		}
+
+		.slideimage {
+			width: 95%;
+			box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+			border: 1px solid #F0F0F0;
+			border-radius: 0.5em;
 		}
 
 		.reviewicon {
@@ -228,8 +244,12 @@
 			.small {
 				height: 2em;
 			}
+
 			#noMobile {
 				height: 5em;
+			}
+			.swiper-container {
+				height: 40em;
 			}
 
 		}
@@ -263,8 +283,12 @@
 				position: fixed;
 				opacity: 0;
 			}
+
 			#noMobile {
 				height: 5em;
+			}
+			.swiper-container {
+				height: 40em;
 			}
 		}
 	</style>
@@ -312,46 +336,46 @@
 			console.log('닫혔음');
 		}
 		function Q1() {
-			if (document.getElementById("a1").style.width == "0%"){
+			if (document.getElementById("a1").style.width == "0%") {
 				document.getElementById("a1").style.width = "80%";
 				document.getElementById("a2").style.width = "0%";
 				document.getElementById("a3").style.width = "0%";
 				document.getElementById("a4").style.width = "0%";
-			}else{
+			} else {
 				document.getElementById("a1").style.width = "0%";
 			}
 		}
 		function Q2() {
-			if (document.getElementById("a2").style.width == "0%"){
+			if (document.getElementById("a2").style.width == "0%") {
 				document.getElementById("a1").style.width = "0%";
 				document.getElementById("a2").style.width = "80%";
 				document.getElementById("a3").style.width = "0%";
 				document.getElementById("a4").style.width = "0%";
-			}else{
+			} else {
 				document.getElementById("a2").style.width = "0%";
 			}
 		}
 		function Q3() {
-			if (document.getElementById("a3").style.width == "0%"){
+			if (document.getElementById("a3").style.width == "0%") {
 				document.getElementById("a1").style.width = "0%";
 				document.getElementById("a2").style.width = "0%";
 				document.getElementById("a3").style.width = "80%";
 				document.getElementById("a4").style.width = "0%";
-			}else{
+			} else {
 				document.getElementById("a3").style.width = "0%";
 			}
 		}
 		function Q4() {
-			if (document.getElementById("a4").style.width == "0%"){
+			if (document.getElementById("a4").style.width == "0%") {
 				document.getElementById("a1").style.width = "0%";
 				document.getElementById("a2").style.width = "0%";
 				document.getElementById("a3").style.width = "0%";
 				document.getElementById("a4").style.width = "80%";
-			}else{
+			} else {
 				document.getElementById("a4").style.width = "0%";
 			}
 		}
-			
+
 
 		function work() {
 			console.log('작동함');
@@ -376,8 +400,8 @@
 		</div>
 	</div>
 	<header>
-		<img class="logo" src="static/web_source/1_navi/big_logo.png"
-			style="height:30%; margin:1.1em; margin-left:2em;" onclick="window.location.href = '/'" >
+		<img class="logo" src="static/web_source/1_navi/big_logo.png" style="height:30%; margin:1.1em; margin-left:2em;"
+			onclick="window.location.href = '/'">
 		<!-- <button style="height: 5em;" onclick="work()">작동해줘</button> -->
 		<img class="hamburger" src="static/hamburger.png" style="height:35%;  margin:1em; float:right;"
 			onclick="clickNav()">
@@ -386,7 +410,8 @@
 		<div id="wrap">
 			<article id="main">
 				<img src="static/mainText@2x.png" style="width:70%; margin:50% auto 0 auto;">
-				<img src="static/1month@2x.png" style="width:45%; margin:10% auto 0 auto;" onclick="window.location.href = '/curate'">
+				<img src="static/1month_why.png" style="width:45%; margin:10% auto 0 auto;"
+					onclick="window.location.href = '/curate'">
 			</article>
 			<article id="brand">
 				<img src="static/brandText@2x.png" style="width:70%; margin:50% auto;">
@@ -402,7 +427,8 @@
 					<img src="static/그룹 105@2x.png" class="intro_icon">
 				</div>
 				<div style="margin:5% auto 0 auto; text-align:center;">
-						<img src="static/seeMore@2x.png" style="width: 25%;" id="brandgo" onclick="window.location.href = '/brandstory'">
+					<img src="static/seeMore@2x.png" style="width: 25%;" id="brandgo"
+						onclick="window.location.href = '/brandstory'">
 				</div>
 			</article>
 			<div class="divideLine"></div>
@@ -414,15 +440,30 @@
 						src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/snacat/static/leftbutton.png"></div> -->
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide" style="background-color:#ff9800;">Slide 1</div>
-							<div class="swiper-slide" style="background-color:#ffb300;">Slide 2</div>
-							<div class="swiper-slide" style="background-color:#ffca28;">Slide 3</div>
-							<div class="swiper-slide" style="background-color:#ffca28;">Slide 4</div>
-							<div class="swiper-slide" style="background-color:#ffca28;">Slide 5</div>
-							<div class="swiper-slide" style="background-color:#ffca28;">Slide 6</div>
-							<div class="swiper-slide" style="background-color:#ffca28;">Slide 7</div>
-							<div class="swiper-slide" style="background-color:#ffca28;">Slide 8</div>
-							<div class="swiper-slide" style="background-color:#ffca28;">Slide 9</div>
+							<div class="swiper-slide">
+								<img src="static/slide_0007_8.png" class="slideimage">
+							</div>
+							<div class="swiper-slide">
+								<img src="static/slide_0000_1.png" class="slideimage">
+							</div>
+							<div class="swiper-slide">
+								<img src="static/slide_0001_2.png" class="slideimage">
+							</div>
+							<div class="swiper-slide">
+								<img src="static/slide_0003_4.png" class="slideimage">
+							</div>
+							<div class="swiper-slide">
+								<img src="static/slide_0004_5.png" class="slideimage">
+							</div>
+							<div class="swiper-slide">
+								<img src="static/slide_0005_6.png" class="slideimage">
+							</div>
+							<div class="swiper-slide">
+								<img src="static/slide_0006_7.png" class="slideimage">
+							</div>
+							<div class="swiper-slide">
+								<img src="static/slide_0007_8.png" class="slideimage">
+							</div>
 						</div>
 					</div>
 					<!-- <div class="reviewicon" id="right-button-next"><img
@@ -438,7 +479,8 @@
 					<img src="static/compImage@2x.png" style="width:80%; margin:2em auto 0 auto;">
 				</div>
 				<div style="text-align:center;">
-					<img src="static/compButton@2x.png" style="width:45%; margin:2em auto 0 auto;" onclick="window.location.href = '/curate'">
+					<img src="static/compButton_why.png" style="width:45%; margin:2em auto 0 auto;"
+						onclick="window.location.href = '/curate'">
 				</div>
 			</article>
 			<article id="how">
@@ -455,16 +497,20 @@
 					<div>
 						<img src="static/Q1@2x.png" style="width:80%; vertical-align: bottom;" onclick="Q1()">
 					</div>
-					<div><img id="a1" src="static/a1@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;" id="a1"></div>
+					<div><img id="a1" src="static/a1@2x.png"
+							style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;" id="a1"></div>
 
 					<div><img src="static/Q2@2x.png" style="width:80%; vertical-align: bottom;" onclick="Q2()"></div>
-					<div><img src="static/a2@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;" id="a2"></div>
+					<div><img src="static/a2@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;"
+							id="a2"></div>
 
 					<div><img src="static/Q3@2x.png" style="width:80%; vertical-align: bottom;" onclick="Q3()"></div>
-					<div><img src="static/a3@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;" id="a3"></div>
+					<div><img src="static/a3@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;"
+							id="a3"></div>
 
 					<div><img src="static/Q4@2x.png" style="width:80%; vertical-align: bottom;" onclick="Q4()"></div>
-					<div><img src="static/a4@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;" id="a4"></div>
+					<div><img src="static/a4@2x.png" style="width:0%; margin-bottom: 1em; transition-duration: 0.2s;"
+							id="a4"></div>
 				</div>
 				<!-- 나중에 요소 길이들을 세로기준으로 맞추고 세로를 0->100 조절하는 애니메이션으로 하면 더 예쁠듯... -->
 			</article>

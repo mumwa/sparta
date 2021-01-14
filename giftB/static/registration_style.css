@@ -1,0 +1,226 @@
+html{
+    font-family: 'Nanum Gothic', sans-serif;
+    overflow: scroll;
+    text-align: center;
+}
+#wrapper{
+    width:1920px;
+}
+.box{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: scroll;
+}
+/* 네비 */
+.navi{
+    height: 120px;
+    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
+    font-weight: bolder;
+    background-color: #ffffff;
+    text-align: center;
+    margin: auto;
+}
+.navi_content{
+    margin-left: -140px;
+    font-size: 30px;
+    display: flex;
+    text-align: center;
+}
+/* 네비 */
+.head{
+    display: flex;
+    margin: 20px 0 30px 400px;
+    padding: 40px;
+    text-align: left;
+}
+.title_wrapper{
+    display: block;
+    
+}
+.title{
+    padding: 12px 0;
+    font-family: NanumGothic;
+    font-size: 45px;
+    font-weight: 800;
+    display: flex;
+    color: #191919;
+}
+.explain{
+    padding: 12px 0;
+    font-family: NanumGothic;
+    font-size: 20px;
+    font-weight: bold;
+    color: #656565;
+}
+.cancel_button{
+    width: 82px;
+    height: 56px;
+    border-radius: 28px;
+    border: none;
+    background-color: #efefef;
+    font-family: NanumGothic;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: normal;
+    text-align: center;
+    color: #404040;
+    margin: 20px 20px 20px 240px;
+}
+#submit_button{
+    width: 82px;
+    height: 56px;
+    border-radius: 28px;
+    border: none;
+    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
+    background-color: #6b50db;
+    font-family: NanumGothic;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: normal;
+    text-align: center;
+    color:white;
+    margin: 20px;
+}
+.registration{
+    width: 1920px;
+    margin-left: 400px;
+    text-align: center;
+}
+table{
+    font-family: NanumGothic;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.19;
+    letter-spacing: normal;
+    text-align: left;
+    color: #404040;
+}
+.table_head{
+    padding: 10px 10px 10px 40px;
+}
+.table_input{
+    height: 90px;
+}
+.short_input{
+    padding: 0 0 0 28px;
+    width: 401px;
+    height: 60px;
+    border-radius: 23px;
+    border: solid 3px #dddddd;
+    font-size : 18px;
+    margin: 0 32px;
+    font-family: 'Nanum Gothic', sans-serif;
+
+}
+.long_input{
+    padding: 0 0 0 28px;
+    width: 902px;
+    height: 60px;
+    border-radius: 23px;
+    border: solid 3px #dddddd;
+    font-size : 18px;
+    margin: 0 32px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+.foot{
+    height: 200px;
+}
+/*.search_button{
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    background: url( "https://ifh.cc/g/45KSbZ.png" );
+    background-size: 30px;
+    border: none;
+    cursor: pointer;
+}
+.one_search{
+    margin: 30px;
+}
+.input_box{
+    display: flex;
+}
+input{
+    width: 440px;
+    height: 63px;
+    font-size : 18px;
+    font-family: 'Nanum Gothic', sans-serif;
+    border: none;
+    border-radius: 32px;
+    background-color: #efefef;
+    padding: 0 0 0 28px;
+    margin: 0 30px;
+}
+.search_bar{
+    width: 1920px;
+    font-weight: bolder;  */
+    /* position: relative; */
+    /* margin: 0 135px;
+}
+.search_box{
+    margin: 15px;
+}
+.name{
+    width: 291px;
+    height: 58px;
+    font-size: 20px;
+    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
+    background-color: #6b50db;
+    border-radius: 17px 17px 0 0;
+}
+.name_text{
+    color:white;
+    position: absolute;
+    margin: 18px 0px 0px 36px;
+}
+.content{
+    width: 291px;
+    height: 242px;
+    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
+    background-color: #ffffff;
+    border-radius: 0 0 17px 17px;
+    text-align: center;
+    margin: 20px auto 20px auto;
+}
+.incontent{
+    padding:auto;
+    margin-top: -18px; */
+    /* 위에 absolute 걸고 padding 18px 넣으면 name이랑 incontent랑 떨어져서 -18px함 왜 그런지는 모르겠음 */
+/* }
+.content>img{
+    margin:auto 0 auto 0;
+}
+.search_table{
+    text-align: left;
+    margin: auto;
+}
+td{
+    padding: 10px;
+    font-size: 16px;
+}
+.gray{
+    color: #606060;
+}
+.wish_button{
+    position: fixed;
+    display: flex;
+    flex-wrap: nowrap;
+    bottom: 7%;
+    right: 5%;
+    width: 370px;
+    height: 90px;
+    border: none;
+    border-radius: 44px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ff60dd;
+    color:white;
+    font-weight: bolder;
+    font-size: 23px;
+    text-align: center;
+}
+.wish_button>div{
+    padding-top:31px;
+
+} */

@@ -126,3 +126,34 @@ td{
     padding-top:31px;
 
 }
+@media (min-width: 768px) {
+    /* .wrapper {
+        text-align: center;
+        margin: auto;
+        width: 70%;
+    }
+
+    article {
+        height: 40em;
+    }
+
+    header {
+        width: 100%;
+        background-color: white;
+        position: fixed;
+        height: 5em;
+    } */
+
+}
+
+@media (min-width: 1030px) {
+    /* .wrapper {
+        text-align: center;
+        margin: auto;
+        width: 40%;
+    }
+
+    article {
+        height: 40em;
+    } */
+}

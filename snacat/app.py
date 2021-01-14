@@ -2,9 +2,9 @@ from flask import Flask, render_template, jsonify, request
 from bson.objectid import ObjectId
 app = Flask(__name__)
 
-# from pymongo import MongoClient           
-# client = MongoClient('localhost',27017) 
-# db = client.dbsurprise
+from pymongo import MongoClient           
+client = MongoClient('localhost',27017) 
+db = client.dbsnacat
 
 @app.route('/')
 def home():
@@ -17,6 +17,12 @@ def brandstory():
 @app.route('/curate')
 def curation():
     return render_template('curation.html')
+
+@app.route('/curate', methods=['POST'])
+def send():
+    title_receive = request.form['title_give']
+    print(title_receive)
+    return jsonify({'result':'success', 'msg': '이 요청은 POST!'})
 
 if __name__ == '__main__': 
     app.run('0.0.0.0',port=5000,debug=True)
