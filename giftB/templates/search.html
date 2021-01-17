@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="주고 싶은 선물:기프트벅"/>
+    <meta property="og:title" content="주고 싶은 선물:기프트벅" />
     <meta property="og:description" content="어쩌고저쩌고 어쩌고저쩌고" />
     <meta property="og:image" content="{{ url_for('static', filename='birthday.jpg') }}" />
-    <title>프로필 검색</title>
+    <title>기프트비</title>
     <link rel="stylesheet" type="text/css" href="static/search_style.css">
+    <link rel="stylesheet" type="text/css"
+        href="/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/search_style.css">
+
     <!--서버에서 돌릴 때는 static/search_style.css-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
@@ -99,7 +102,7 @@
                         <div class="name_text">${name}</div>
                     </div>
                     <div class="incontent">
-                        <img src='static/no_profile.png' style="margin:20px;">
+                        <img src='/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/no_profile.png' style="margin:1.5em;">
                         <table class="search_table">
                             <tr>
                                 <td>생일:</td>
@@ -121,21 +124,23 @@
             <div class="input_box"></div>
             <div>
                 <a href="">
-                    <img class="logo" src='static/logo2.png'>
+                    <img class="logo" src='/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/logo2.png'>
                 </a>
             </div>
             <div class="wish">위시리스트 검색</div>
             <div class="one_search">
                 <label class="search_explain">닉네임으로 검색</label>
                 <input placeholder="닉네임으로 검색하기" id="name_search" type="text" onkeyup="enterName()" maxlength="4">
-                <button class="search_button" onclick="searchWithName()"><img src="static/search_button.png"></button>
+                <button class="search_button" onclick="searchWithName()"><img
+                        src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/search_button.png"></button>
             </div>
             <div class="one_search">
                 <label class="search_explain">전화번호로 검색</label>
                 <input placeholder="-하이픈 없이 번호로 검색하기" id="phone_search" type="text" onkeyup="enterPhone()"
                     maxlength="11"
                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                <button class="search_button" onclick="searchWithPhone()"><img src="static/search_button.png"></button>
+                <button class="search_button" onclick="searchWithPhone()"><img
+                        src="/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/search_button.png"></button>
             </div>
         </div>
     </div>
@@ -143,6 +148,125 @@
     <div class="formobile"></div>
     <div class="search_bar">
         <div class="box_wrapper" id="box">
+            <div class="search_box" onclick="window.location.href = '/giftprofile?id=${userID}'">
+                <div class="content">
+                    <div class="name">
+                        <div class="name_text">${name}</div>
+                    </div>
+                    <div class="incontent">
+                        <img src='/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/no_profile.png'
+                            style="margin:1.5em;">
+                        <table class="search_table">
+                            <tr>
+                                <td>생일:</td>
+                                <td class="gray">${birthday}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="search_box" onclick="window.location.href = '/giftprofile?id=${userID}'">
+                <div class="content">
+                    <div class="name">
+                        <div class="name_text">${name}</div>
+                    </div>
+                    <div class="incontent">
+                        <img src='/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/no_profile.png'
+                            style="margin:1.5em;">
+                        <table class="search_table">
+                            <tr>
+                                <td>생일:</td>
+                                <td class="gray">${birthday}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="search_box" onclick="window.location.href = '/giftprofile?id=${userID}'">
+                <div class="content">
+                    <div class="name">
+                        <div class="name_text">${name}</div>
+                    </div>
+                    <div class="incontent">
+                        <img src='/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/no_profile.png'
+                            style="margin:1.5em;">
+                        <table class="search_table">
+                            <tr>
+                                <td>생일:</td>
+                                <td class="gray">${birthday}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="search_box" onclick="window.location.href = '/giftprofile?id=${userID}'">
+                <div class="content">
+                    <div class="name">
+                        <div class="name_text">${name}</div>
+                    </div>
+                    <div class="incontent">
+                        <img src='/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/no_profile.png'
+                            style="margin:1.5em;">
+                        <table class="search_table">
+                            <tr>
+                                <td>생일:</td>
+                                <td class="gray">${birthday}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="search_box" onclick="window.location.href = '/giftprofile?id=${userID}'">
+                <div class="content">
+                    <div class="name">
+                        <div class="name_text">${name}</div>
+                    </div>
+                    <div class="incontent">
+                        <img src='/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/no_profile.png'
+                            style="margin:1.5em;">
+                        <table class="search_table">
+                            <tr>
+                                <td>생일:</td>
+                                <td class="gray">${birthday}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="search_box" onclick="window.location.href = '/giftprofile?id=${userID}'">
+                <div class="content">
+                    <div class="name">
+                        <div class="name_text">${name}</div>
+                    </div>
+                    <div class="incontent">
+                        <img src='/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/no_profile.png'
+                            style="margin:1.5em;">
+                        <table class="search_table">
+                            <tr>
+                                <td>생일:</td>
+                                <td class="gray">${birthday}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="search_box" onclick="window.location.href = '/giftprofile?id=${userID}'">
+                <div class="content">
+                    <div class="name">
+                        <div class="name_text">${name}</div>
+                    </div>
+                    <div class="incontent">
+                        <img src='/Users/chyo0903/Desktop/desktop-tutorial/sparta/giftB/static/no_profile.png'
+                            style="margin:1.5em;">
+                        <table class="search_table">
+                            <tr>
+                                <td>생일:</td>
+                                <td class="gray">${birthday}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <a class="wish_button" href="registration" style="text-decoration:none">
