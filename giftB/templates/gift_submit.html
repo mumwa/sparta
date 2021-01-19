@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>선물 등록</title>
+    <title>기프트비 선물 등록</title>
     <link rel="stylesheet" type="text/css"
         href="static/gift_submit_style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,7 +19,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script> -->
     <script type="text/javascript">
-        
+
         function make_profile() {
             // 1. 제목, 저자, 리뷰 내용을 가져옵니다.
             let user = window.location.href.split('=')[1];
@@ -43,12 +44,12 @@
                 alert('사연을 입력해주세요');
                 $('#story').focus();
                 return;
-            } 
+            }
             // 3. POST /reviews 에 저장을 요청합니다.
             $.ajax({
                 type: "POST",
                 url: "/giftsubmit",
-                data: { product_name_give: product_name, price_give: price, image_give: image, link_give: link, story_give: story, user_id: user},
+                data: { product_name_give: product_name, price_give: price, image_give: image, link_give: link, story_give: story, user_id: user },
                 success: function (response) {
                     if (response['result'] == 'success') {
                         alert(response['msg']);
@@ -59,19 +60,22 @@
             })
         }
     </script>
-
-
 </head>
 
 <body>
     <div id="wrapper">
-        <div class="navi" class="box">
+        <div class="navi">
             <div class="navi_content" onclick="window.location.href = '/'">
-                <img style="max-width:50px; margin: 35px 15px 35px auto;" src='static/logo.png'></a>
-                <div style="margin: 40px auto 40px 15px;">위시리스트 등록하기</div>
+                <img src='static/logo.png' class="logo"></a>
+                <div class="navi_text">위시리스트</div>
+            </div>
+            <div>
+                <a href="">
+                    <img class="logo2" src='static/logo2.png'>
+                </a>
             </div>
         </div>
-        <div class="head">
+        <!-- <div class="head">
             <div class="title_wrapper">
                 <div class="title">
                     <img style="width:45px; height:45px; margin: 5px 20px 0 0;" src='https://ifh.cc/g/6Mozy1.png'>
@@ -85,9 +89,10 @@
             </div>
             <button class="cancel_button">취소</button>
             <button id="submit_button" onclick="make_profile()">완료</button>
-        </div>
+        </div> -->
         <div class="registration">
             <div class="registration_content">
+                <div class="name">선물 등록하기</div>
                 <table>
                     <tr>
                         <td class="table_head">제품명</td>
@@ -115,8 +120,12 @@
                     <tr>
                         <td colspan="2"><textarea class="big_input" id="story"></textarea>
                     </tr>
-                    
+
                 </table>
+                <div class="button">
+                    <button class="cancel_button">취소</button>
+                    <button id="submit_button" onclick="make_profile()">완료</button>
+                </div>
             </div>
         </div>
         <div class="foot"></div>

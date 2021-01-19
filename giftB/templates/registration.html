@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>등록창</title>
+    <title>기프트비 위시리스트 등록</title>
     <link rel="stylesheet" type="text/css"
         href="static/registration_style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -86,64 +87,70 @@
 
 
 </head>
-
 <body>
     <div id="wrapper">
-        <div class="navi" class="box">
+        <div class="navi">
             <div class="navi_content" onclick="window.location.href = '/'">
-                <img style="max-width:50px; margin: 35px 15px 35px auto;" src='static/logo.png'></a>
-                <div style="margin: 40px auto 40px 15px;">위시리스트 등록하기</div>
+                <img src='static/logo.png' class="logo"></a>
+                <div class="navi_text">위시리스트</div>
+            </div>
+            <div>
+                <a href="">
+                    <img class="logo2" src='static/logo2.png'>
+                </a>
             </div>
         </div>
-        <div class="head">
+        <!-- <div class="head">
             <div class="title_wrapper">
                 <div class="title">
                     <img style="width:34px; height:43px; margin: 5px 20px 0 0;" src='https://ifh.cc/g/cNkpIs.png'>
-                    <div>프로필 등록하기</div>
+                    <div>위시리스트 등록하기</div>
                 </div>
                 <div class="explain">
                     프로필을 등록하면 사용자들이 검색을 통해 찾을 수 있고,
                     <br>선물 등록이 가능합니다.
-                    <br>이름, 전화번호, 생일만 공개됩니다.
+                    <br>전화번호와 닉네임으로 검색 가능하고
+                    <br>닉네임, 생일만 공개됩니다.
                 </div>
             </div>
             <button class="cancel_button">취소</button>
             <button id="submit_button" onclick="make_profile()">완료</button>
-        </div>
+        </div> -->
         <div class="registration">
+            <div class="name">위시리스트 등록하기</div>
             <div class="registration_content">
                 <table>
-                    <tr>
-                        <td class="table_head">이름</td>
-                        <td class="table_head">번호</td>
-                    </tr>
-                    <tr class="table_input">
-                        <td><input class="short_input" id="name"></td>
-                        <td><input class="short_input" id="phonenumber"></td>
-                    </tr>
                     <tr>
                         <td colspan="2" class="table_head">생일</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input class="long_input" id="birthday"></td>
+                        <td><input class="short_input" id="birthday" placeholder="0월 0일"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="table_head">닉네임</td>
+                        <td class="table_head">번호</td>
+                    </tr>
+                    <tr class="table_input">
+                        <td><input class="short_input" id="name" placeholder="닉네임"></td>
+                        <td><input class="short_input" id="phonenumber" placeholder="01012341234"></td>
                     </tr>
                     <tr>
                         <td colspan="2" class="table_head">주소지</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input class="long_input" id="address"></td>
+                        <td colspan="2"><input class="long_input" id="address" placeholder="선물이 배송될 주소입니다"></td>
                     </tr>
 
                     <tr>
                         <td colspan="2" class="table_head">계좌번호</td>
                     </tr>
                     <tr class="table_input">
-                        <td><input class="short_input" id="bank"></td>
-                        <td><input class="short_input" id="account"></td>
+                        <td><input class="short_input" id="bank" placeholder="은행 이름"></td>
+                        <td><input class="short_input" id="account" placeholder="계좌번호"></td>
                     </tr>
-
                     <tr>
-                        <td class="table_head">프로필 수정 비밀번호</td>
+                        <td class="table_head">리스트 수정 비밀번호</td>
                         <td class="table_head">비밀번호 확인</td>
                     </tr>
                     <tr>
@@ -152,9 +159,14 @@
                     </tr>
                 </table>
             </div>
+            <div class="button">
+                <button class="cancel_button">취소</button>
+                <button id="submit_button" onclick="make_profile()">완료</button>
+            </div>
         </div>
-        <div class="foot"></div>
-        <!-- <div class="navi">
+    </div>
+    <div class="foot"></div>
+    <!-- <div class="navi">
         <div class="box_wrapper">
             <div class="input_box">
                 <div style="margin: 35px 10px 35px auto;">
@@ -164,7 +176,7 @@
             </div>
         </div>
     </div> -->
-        <!-- <div class="search_bar">
+    <!-- <div class="search_bar">
             <div class="box_wrapper">
 
             </div>
@@ -172,4 +184,5 @@
         <img style="min-width:50px; max-width: 70px;" scr='https://ifh.cc/g/51HFMJ.png'>
     </div> -->
 </body>
+
 </html>

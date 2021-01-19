@@ -15,7 +15,6 @@ body {
   display: block;
 }
 /* 네비 */
-
 .navi {
   display: inline-block;
   width: 100%;
@@ -47,7 +46,7 @@ body {
   margin: 1.5em;
 }
 /* 네비 */
-
+/* 
 .cancel_button {
   width: 82px;
   height: 56px;
@@ -76,7 +75,7 @@ body {
   text-align: center;
   color: white;
   margin: 20px;
-}
+} */
 .registration {
   width: 100%;
   text-align: center;
@@ -123,7 +122,7 @@ textarea:focus {
   border: 1.5px solid #3ca1b1;
 }
 .table_input {
-  height: 90px;
+  height: 5em;
 }
 .short_input {
   padding: 0 1em;

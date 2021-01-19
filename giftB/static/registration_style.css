@@ -1,131 +1,217 @@
-html{
-    font-family: 'Nanum Gothic', sans-serif;
-    overflow: scroll;
-    text-align: center;
+html {
+  font-family: "Noto+Sans+KR";
+  overflow: auto;
+  text-align: center;
 }
-#wrapper{
-    width:1920px;
+body {
+  width: 100%;
+  display: block;
+  margin: 0px;
+  /*브라우저가 임의로 body margin을 설정해서 해둔것*/
 }
-.box{
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: scroll;
-}
-/* 네비 */
-.navi{
-    height: 120px;
-    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
-    font-weight: bolder;
-    background-color: #ffffff;
-    text-align: center;
-    margin: auto;
-}
-.navi_content{
-    margin-left: -140px;
-    font-size: 30px;
-    display: flex;
-    text-align: center;
+.wrapper {
+  width: 100%;
+  font-family: "Noto+Sans+KR";
+  text-align: center;
+  display: block;
 }
 /* 네비 */
-.head{
-    display: flex;
-    margin: 20px 0 30px 400px;
-    padding: 40px;
-    text-align: left;
-}
-.title_wrapper{
-    display: block;
-    
-}
-.title{
-    padding: 12px 0;
-    font-family: NanumGothic;
-    font-size: 45px;
-    font-weight: 800;
-    display: flex;
-    color: #191919;
-}
-.explain{
-    padding: 12px 0;
-    font-family: NanumGothic;
-    font-size: 20px;
-    font-weight: bold;
-    color: #656565;
-}
-.cancel_button{
-    width: 82px;
-    height: 56px;
-    border-radius: 28px;
-    border: none;
-    background-color: #efefef;
-    font-family: NanumGothic;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-align: center;
-    color: #404040;
-    margin: 20px 20px 20px 240px;
-}
-#submit_button{
-    width: 82px;
-    height: 56px;
-    border-radius: 28px;
-    border: none;
-    box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
-    background-color: #6b50db;
-    font-family: NanumGothic;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-align: center;
-    color:white;
-    margin: 20px;
-}
-.registration{
-    width: 1920px;
-    margin-left: 400px;
-    text-align: center;
-}
-table{
-    font-family: NanumGothic;
-    font-size: 16px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.19;
-    letter-spacing: normal;
-    text-align: left;
-    color: #404040;
-}
-.table_head{
-    padding: 10px 10px 10px 40px;
-}
-.table_input{
-    height: 90px;
-}
-.short_input{
-    padding: 0 0 0 28px;
-    width: 401px;
-    height: 60px;
-    border-radius: 23px;
-    border: solid 3px #dddddd;
-    font-size : 18px;
-    margin: 0 32px;
-    font-family: 'Nanum Gothic', sans-serif;
 
+.navi {
+  display: inline-block;
+  width: 100%;
+  height: 5em;
+  box-shadow: 0 3px 6px -3px rgba(47, 47, 47, 0.16);
+  background-color: #ffffff;
+  text-align: center;
+  margin: auto;
 }
-.long_input{
-    padding: 0 0 0 28px;
-    width: 902px;
-    height: 60px;
-    border-radius: 23px;
-    border: solid 3px #dddddd;
-    font-size : 18px;
-    margin: 0 32px;
-    font-family: 'Nanum Gothic', sans-serif;
+.logo2 {
+  height: 0;
 }
-.foot{
-    height: 200px;
+.navi_text {
+  height: 3em;
+  margin-top: 2em;
+}
+.navi_content {
+  /* margin-left: -140px; */
+  font-weight: bolder;
+  width: 16%;
+  margin: 0 42%;
+  display: flex;
+}
+.navi_content:hover {
+  cursor: pointer;
+}
+.logo {
+  height: 2em;
+  margin: 1.5em;
+}
+/* 네비 */
+/* .head {
+  width: 40%;
+  display: flex;
+  margin: 0 30%;
+  text-align: left;
+}
+.title_wrapper {
+  display: block;
+}
+.title {
+  padding: 0.5em 0;
+  font-family: Noto + Sans + KR;
+  font-size: 1.5em;
+  font-weight: 800;
+  display: flex;
+  color: #191919;
+} */
+.name {
+  margin: 1em;
+  font-size: 2em;
+  font-weight: bold;
+}
+.registration {
+  width: 40%;
+  margin: 0 30%;
+  text-align: center;
+}
+.registration_content {
+  width: 100%;
+}
+/* table {
+  font-family: Noto + Sans + KR;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  text-align: left;
+  color: #404040;
+}
+.table_head {
+  padding: 10px 10px 10px 40px;
+}
+.table_input {
+  height: 90px;
+}
+.short_input {
+  padding: 0 0 0 28px;
+  width: 401px;
+  height: 60px;
+  border-radius: 23px;
+  border: solid 3px #dddddd;
+  font-size: 18px;
+  margin: 0 32px;
+  font-family: "Noto+Sans+KR";
+}
+.long_input {
+  padding: 0 0 0 28px;
+  width: 902px;
+  height: 60px;
+  border-radius: 23px;
+  border: solid 3px #dddddd;
+  font-size: 18px;
+  margin: 0 32px;
+  font-family: "Noto+Sans+KR";
+} */
+table {
+  width: 100%;
+  font-family: Noto + Sans + KR;
+  font-size: 0.8em;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  text-align: left;
+  color: #404040;
+}
+.table_head {
+  padding-top: 2em;
+  padding-left: 2em;
+}
+input {
+  border: 1.5px solid #dddddd;
+}
+input:focus {
+  outline: none;
+  border: 1.5px solid #3ca1b1;
+}
+textarea {
+  border: 1.5px solid #dddddd;
+}
+textarea:focus {
+  outline: none;
+  border: 1.5px solid #3ca1b1;
+}
+.table_input {
+  height: 5em;
+}
+.short_input {
+  padding: 0 1em;
+  width: 80%;
+  height: 3em;
+  border-radius: 1.5em;
+  margin: 0 1em;
+}
+.long_input {
+  padding: 0 1em;
+  width: 90%;
+  height: 3em;
+  border-radius: 1.5em;
+  margin: 0 1em;
+}
+.big_input {
+  padding: 1em;
+  width: 85%;
+  height: 10em;
+  border-radius: 1.5em;
+  margin: 1.5em;
+  /* 자꾸 표에 이상한 마진이 생기는데 대체 왜 생기는지 알수없어서 그냥... 내가 조정함. */
+}
+.explain {
+  padding: 0.5em 0;
+  font-family: Noto + Sans + KR;
+  font-size: 1em;
+  font-weight: bold;
+  color: #656565;
+}
+.button {
+  text-align: right;
+  padding-top: 1em;
+}
+.cancel_button {
+  width: 5em;
+  height: 3em;
+  border-radius: 1.5em;
+  border: none;
+  background-color: #efefef;
+  font-family: Noto + Sans + KR;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: normal;
+  text-align: center;
+  color: #404040;
+  margin: 0.5em;
+}
+#submit_button {
+  width: 5em;
+  height: 3em;
+  border-radius: 1.5em;
+  border: none;
+  box-shadow: 0 3px 6px 0 rgba(47, 47, 47, 0.16);
+  background-color: #CA3172;
+  font-family: Noto + Sans + KR;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: normal;
+  text-align: center;
+  color: white;
+  margin: 0.5em;
+}
+.foot {
+  height: 4em;
 }
 /*.search_button{
     width: 30px;
@@ -156,8 +242,8 @@ input{
 .search_bar{
     width: 1920px;
     font-weight: bolder;  */
-    /* position: relative; */
-    /* margin: 0 135px;
+/* position: relative; */
+/* margin: 0 135px;
 }
 .search_box{
     margin: 15px;
@@ -187,7 +273,7 @@ input{
 .incontent{
     padding:auto;
     margin-top: -18px; */
-    /* 위에 absolute 걸고 padding 18px 넣으면 name이랑 incontent랑 떨어져서 -18px함 왜 그런지는 모르겠음 */
+/* 위에 absolute 걸고 padding 18px 넣으면 name이랑 incontent랑 떨어져서 -18px함 왜 그런지는 모르겠음 */
 /* }
 .content>img{
     margin:auto 0 auto 0;
@@ -224,3 +310,37 @@ td{
     padding-top:31px;
 
 } */
+@media (max-width: 768px) {
+  .navi {
+    /* padding: 45px; */
+    width: 100%;
+    height: 3.5em;
+    box-shadow: 0 3px 6px -3px rgba(47, 47, 47, 0.16);
+    /* 언젠가 밑에만 생기게 바꾸고 만다>>바꿈ㅋ */
+    background-color: #ffffff;
+    font-weight: bolder;
+    /* 아래 15px 마진 줘서 30px 여백 줬는데 맨 위도 30px 떨어지게 하고 싶어서 여기에 15px 줌 */
+  }
+  .registration{
+    width: 90%;
+    margin: 0 5%;
+  }
+  .logo2 {
+    height: 1.3em;
+    margin: 1.1em;
+  }
+  .navi_content {
+    width: 0;
+    height: 0;
+    font-size: 0;
+  }
+  .registration_content {
+    width: 90%;
+    margin: 0 5%;
+    margin: auto;
+    text-align: center;
+  }
+  .big_input {
+    margin: 2em 1em;
+  }
+}
