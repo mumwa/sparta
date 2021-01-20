@@ -35,17 +35,19 @@ body {
 }
 .navi_content {
   /* margin-left: -140px; */
-  font-weight: bolder;
-  width: 16%;
-  margin: 0 42%;
-  display: flex;
-}
-.navi_content:hover {
-  cursor: pointer;
+  /* font-weight: bolder; */
+  width: 100%;
+  text-align: center;
+  display: block;
 }
 .logo {
+  padding-left: 0.2em;
+  margin: 0 auto;
   height: 2em;
   margin: 1.5em;
+}
+.logo:hover {
+  cursor: pointer;
 }
 /* 네비 */
 /* .head {
