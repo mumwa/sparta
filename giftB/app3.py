@@ -22,9 +22,13 @@ def read_profile():
         profiles = list(db.profiles.find({'phonenumber': search_phone}))
     else:
         profiles = list(db.profiles.find({}))
-
     for profile in profiles:
         profile['_id'] = profile['_id'].__str__()
+    
+    # print(profiles[0])
+    # ObjectId(string_id_from_front)
+    # print(db.profiles.find_one({"_id": ObjectId(profiles[0]['_id'])}))
+    # 아이디 가져다쓰는...그런거...
     return jsonify({'result': 'success', 'profiles': profiles})
 
 @app.route('/registration')
@@ -92,13 +96,11 @@ def gift_page():
 def read_owner():
     user_receive = request.args.get('user_give')
     owners = list(db.profiles.find({'_id':ObjectId(user_receive)}, {'_id': False, 'password': False}))
-    return jsonify({'result': 'success', 'owners': owners})
-    #살려줘
     # print(profiles[0])
     # ObjectId(string_id_from_front)
     # print(db.profiles.find_one({"_id": ObjectId(profiles[0]['_id'])}))
     # 아이디 가져다쓰는...그런거...
-    
+    return jsonify({'result': 'success', 'owners': owners})
 
 @app.route('/yourgiftlist', methods=['GET'])
 def read_gift():
@@ -114,19 +116,45 @@ def read_gift():
             gathered_price += int(payer['present'])
         
         gift['gathered_price'] = gathered_price
+
+    # print(profiles[0])
+    # ObjectId(string_id_from_front)
+    # print(db.profiles.find_one({"_id": ObjectId(profiles[0]['_id'])}))
+    # 아이디 가져다쓰는...그런거...
     return jsonify({'result': 'success', 'gifts': gifts})
 
+# @app.route('/howmuchpay', methods=['GET'])
+# def read_pay():
+#     user_receive = request.args.get('user_give')
+#     payers = list(db.payers.find({'user_id':user_receive}))
+    # for payer in payers:
+    #     gift['_id'] = gift['_id'].__str__()
+    # print(profiles[0])
+    # ObjectId(string_id_from_front)
+    # print(db.profiles.find_one({"_id": ObjectId(profiles[0]['_id'])}))
+    # 아이디 가져다쓰는...그런거...
+    # return jsonify({'result': 'success', 'payers': payers})
 
 @app.route('/identify')
 def identify_page():
     return render_template('enter_password.html')
 
-@app.route('/identified', methods=['GET'])
+@app.route('/identify', methods=['GET'])
 def topass():
     user_receive = request.args.get('user_give')
-    passed = list(db.profiles.find({'_id':ObjectId(user_receive)}, {'_id': False, 'name': False, 'phonenumber': False, 'birthday':False, 'bank':False, 'account':False, 'address':False}))
-    # passed = list(db.profiles.find({'_id':ObjectId(user_receive)}, {'_id': False}))
-    return jsonify({'result':'success', 'passed': passed})  
+    owners = list(db.profiles.find({'_id':ObjectId(user_receive)}, {'_id': False, ,'password': False}))
+    # print(profiles[0])
+    # ObjectId(string_id_from_front)
+    # print(db.profiles.find_one({"_id": ObjectId(profiles[0]['_id'])}))
+    # 아이디 가져다쓰는...그런거...
+    return jsonify({'result': 'success', 'owners': owners})
+    # user_receive = request.args.get('user_give')
+    # password_receive = list(db.profiles.find({'_id':ObjectId(user_receive)}, {'_id': False, 'password': False}))
+    # print(profiles[0])
+    # ObjectId(string_id_from_front)
+    # print(db.profiles.find_one({"_id": ObjectId(profiles[0]['_id'])}))
+    # 아이디 가져다쓰는...그런거...
+    # return jsonify({'result': 'success', 'owners': owners})
 
 @app.route('/giftpay')
 def payment():
@@ -154,6 +182,11 @@ def new_pay():
 
     db.payers.insert_one(payer)
     return jsonify({'result': 'success', 'msg': '성공적으로 선물했습니다!'})
+
+# @app.route('/giftlist', methods=['GET'])
+# def read_profile():
+#     profiles = list(db.profiles.find({},{'_id':0}))
+#     return jsonify({'result': 'success', 'profiles': profiles})
 
 if __name__ == '__main__':  
     app.run('0.0.0.0',port=5000,debug=True)

@@ -52,7 +52,7 @@ body {
 .head {
   width: 100%;
   height: 15em;
-  background-image: url(static/back_profile2.png);
+  background-image: url(back_profile2.png);
   /* display: flex;
   margin: 10px auto 10px 160px;
   padding: 40px; */
@@ -247,7 +247,7 @@ body {
   margin: auto;
 }
 td {
-  padding: 1em;
+  padding: 0.3em;
   font-size: 1em;
 }
 .gray {
@@ -294,7 +294,7 @@ td {
     font-size: 0;
   }
   .head {
-    background-image: url(static/back_profile.png);
+    background-image: url(back_profile.png);
     /* display: flex;
     margin: 10px auto 10px 160px;
     padding: 40px; */
